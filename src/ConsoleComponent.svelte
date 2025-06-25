@@ -82,7 +82,7 @@
     bind:this={fileInput}
     style="display: none" 
     type="file" 
-    accept="video/mp4" 
+    accept="video/*,.mp4,.mov,.avi,.mkv,.webm" 
     on:change={handleFileUpload} 
   />
   <button on:click={openFile} class="control-btn folder-btn" title="OpenFile">

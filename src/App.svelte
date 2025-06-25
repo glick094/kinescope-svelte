@@ -144,11 +144,23 @@
     <div class="Scatter">
       {#if videoSrc}
         <ScatterPlot {poseData} {jointMask} {syncedTime}/>
+      {:else}
+        <div class="placeholder">Select a video file to begin</div>
       {/if}
     </div>
-    {#if videoSrc}
-      <VideoPlayer {videoSrc} setSyncedTime={setSyncedTime} bind:videoElement/>
-    {/if}
+    <div class="VideoSection">
+      {#if videoSrc}
+        <div class="video-container">
+          <VideoPlayer {videoSrc} setSyncedTime={setSyncedTime} bind:videoElement/>
+          <ConsoleComponent {syncedTime} setSyncedTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} />
+        </div>
+      {:else}
+        <div class="placeholder">
+          <div>Video will appear here</div>
+          <ConsoleComponent {syncedTime} setSyncedTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} />
+        </div>
+      {/if}
+    </div>
   </div>
   
   <div style="height: 10vh"></div>
@@ -157,8 +169,6 @@
     {#if videoSrc}
       <Timeline {poseData} time={syncedTime} setTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} {jointMask}/>
     {/if}
-    
-    <ConsoleComponent {syncedTime} setSyncedTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} />    
   </div>
 </div>
 
@@ -179,5 +189,35 @@
   :global(.Scatter) {
     height: 50%;
     width: 50%;
+  }
+
+  :global(.VideoSection) {
+    height: 50%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
   }
 </style>
