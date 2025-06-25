@@ -9,6 +9,8 @@
   export let onCSVUploaded: (result: PoseProcessingResult) => void;
   export let videoLoaded: boolean;
 
+  $: step2Enabled = videoLoaded;
+
   let csvFileInput: HTMLInputElement;
   let isUploadingCSV: boolean = false;
 
@@ -48,12 +50,7 @@
   <h3>Pose Detection</h3>
   
   <div class="controls">
-    {#if !videoLoaded}
-      <div class="info-message">
-        <i class="fas fa-info-circle"></i>
-        Load a video file to begin pose detection
-      </div>
-    {:else if isProcessing}
+    {#if isProcessing}
       <div class="processing-info">
         <div class="progress-container">
           <div class="progress-bar">
@@ -75,12 +72,23 @@
       </div>
     {:else}
       <div class="button-group">
-        <button on:click={onStartProcessing} class="control-btn start-btn">
+        <button 
+          on:click={onStartProcessing} 
+          class="control-btn start-btn"
+          class:disabled={!step2Enabled}
+          disabled={!step2Enabled}
+        >
+          <span class="step-number">②</span>
           <i class="fas fa-play"></i>
           Start Pose Detection
         </button>
-        <div class="divider">OR</div>
-        <button on:click={triggerCSVUpload} class="control-btn upload-btn">
+        <button 
+          on:click={triggerCSVUpload} 
+          class="control-btn upload-btn"
+          class:disabled={!step2Enabled}
+          disabled={!step2Enabled}
+        >
+          <span class="step-number">②</span>
           <i class="fas fa-upload"></i>
           Upload CSV Data
         </button>
@@ -107,21 +115,16 @@
 
 <style>
   .pose-processing-panel {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 12px;
-    margin: 5px 0;
-    width: 100%;
-    max-width: 500px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    width: auto;
   }
 
   .pose-processing-panel h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #495057;
-    font-size: 16px;
-    font-weight: 600;
+    display: none;
   }
 
   .controls {
@@ -130,13 +133,6 @@
     gap: 15px;
   }
 
-  .info-message {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #6c757d;
-    font-style: italic;
-  }
 
   .processing-info {
     display: flex;
@@ -188,7 +184,7 @@
     color: white;
   }
 
-  .start-btn:hover {
+  .start-btn:hover:not(.disabled) {
     background: linear-gradient(135deg, #218838, #1abc9c);
     transform: translateY(-1px);
   }
@@ -221,17 +217,9 @@
 
   .button-group {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 15px;
     align-items: center;
-  }
-
-  .divider {
-    color: #6c757d;
-    font-size: 12px;
-    font-weight: 500;
-    text-align: center;
-    padding: 5px 0;
   }
 
   .upload-btn {
@@ -239,9 +227,31 @@
     color: white;
   }
 
-  .upload-btn:hover {
+  .upload-btn:hover:not(.disabled) {
     background: linear-gradient(135deg, #0056b3, #004085);
     transform: translateY(-1px);
+  }
+
+  .control-btn.disabled {
+    background: #6c757d !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .control-btn.disabled:hover {
+    transform: none;
+  }
+
+  .step-number {
+    font-size: 16px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .loading-message {

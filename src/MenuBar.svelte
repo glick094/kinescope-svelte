@@ -14,33 +14,24 @@
     GetJointColor: (joint_name: string, opacity?: number) => string;
   }
 
-  interface JointMask {
-    [jointName: string]: string[];
-  }
-
-  export let poseData: PoseData;
-  export let setJointMask: (mask: JointMask) => void;
+  export let poseData: PoseData | null = null;
+  export let videoSrc: string | null = null;
+  export let videoElement: HTMLVideoElement | null = null;
 
   let isOpen: boolean = false;
-  let toggleData: JointMask = {};
-
-  function handleToggle(name: string, axis: string): void {
-    const current = toggleData[name] || [];
-    const updated = current.includes(axis)
-      ? current.filter(x => x !== axis) // remove
-      : [...current, axis];             // add
-    
-    toggleData = { ...toggleData, [name]: updated };
-    setJointMask(toggleData);
-  }
 
   function toggleMenu(): void {
-    if (poseData) {
-      isOpen = !isOpen;
-    }
+    isOpen = !isOpen;
   }
 
   $: jointNames = poseData && poseData.joints ? Object.keys(poseData.joints) : [];
+  $: totalFrames = poseData && jointNames.length > 0 ? 
+    Math.max(...jointNames.map(name => poseData!.joints[name]?.frames?.length || 0)) : 0;
+  $: videoDuration = videoElement?.duration && !isNaN(videoElement.duration) ? videoElement.duration : 0;
+  $: videoFileName = videoSrc ? 
+    (videoSrc.startsWith('blob:') ? 'Uploaded video file' : videoSrc.split('/').pop()?.split('?')[0] || 'Unknown') : null;
+  $: hasVideoData = videoSrc !== null;
+  $: hasPoseData = poseData && jointNames.length > 0;
 </script>
 
 <div class="MenuBar">
@@ -49,24 +40,50 @@
     <span>kinescope</span>
   </button>
   
-  {#if isOpen && poseData}
+  {#if isOpen}
     <div class="DropdownMenu">
-      <div class="DropdownHeader">
-        <span>Joint</span><span>X</span><span>Y</span><span>Speed</span>
-      </div>
-      <div class="DropdownContent">
-        {#each jointNames as name}
-          <div class="DropdownRow">
-            <span>{name}</span>
-            {#each ['x', 'y', 'speed'] as axis}
-              <input
-                type="checkbox"
-                checked={toggleData[name]?.includes(axis) || false}
-                on:change={() => handleToggle(name, axis)}
-              />
-            {/each}
-          </div>
-        {/each}
+      <div class="info-section">
+        <h4>Metadata</h4>
+        
+        <div class="info-group">
+          <h5><i class="fas fa-video"></i> Video</h5>
+          {#if hasVideoData}
+            <div class="info-item">
+              <span class="label">File:</span>
+              <span class="value">{videoFileName}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Duration:</span>
+              <span class="value">{videoDuration > 0 ? videoDuration.toFixed(2) + 's' : 'Loading...'}</span>
+            </div>
+          {:else}
+            <div class="info-item">
+              <span class="no-data">No video loaded</span>
+            </div>
+          {/if}
+        </div>
+
+        <div class="info-group">
+          <h5><i class="fas fa-running"></i> Pose Data</h5>
+          {#if hasPoseData}
+            <div class="info-item">
+              <span class="label">Source:</span>
+              <span class="value">Loaded from CSV/MediaPipe</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Joints:</span>
+              <span class="value">{jointNames.length}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Frames:</span>
+              <span class="value">{totalFrames}</span>
+            </div>
+          {:else}
+            <div class="info-item">
+              <span class="no-data">No pose data loaded</span>
+            </div>
+          {/if}
+        </div>
       </div>
     </div>
   {/if}
@@ -122,6 +139,8 @@
     z-index: 9999;
     overflow: hidden;
     height: 80vh;
+    display: flex;
+    flex-direction: column;
   }
 
   @keyframes slideDown {
@@ -135,22 +154,71 @@
     }
   }
 
-  .DropdownHeader,
-  .DropdownRow {
-    display: grid;
-    grid-template-columns: 100px 40px 40px 40px;
-    align-items: center;
-    padding: 8px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .DropdownHeader {
-    font-weight: bold;
-    background-color: #f0f0f0;
-  }
-
-  .DropdownContent {
-    max-height: 200px;
+  .info-section {
+    padding: 20px;
+    flex: 1;
     overflow-y: auto;
+  }
+
+  .info-section h4 {
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+  }
+
+  .info-group {
+    margin-bottom: 20px;
+  }
+
+  .info-group h5 {
+    margin: 0 0 12px 0;
+    color: #34495e;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-group h5 i {
+    color: #3498db;
+    width: 16px;
+  }
+
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #ecf0f1;
+  }
+
+  .info-item:last-child {
+    border-bottom: none;
+  }
+
+  .label {
+    font-weight: 500;
+    color: #7f8c8d;
+    font-size: 13px;
+  }
+
+  .value {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 13px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .no-data {
+    color: #95a5a6;
+    font-style: italic;
+    font-size: 13px;
   }
 </style>

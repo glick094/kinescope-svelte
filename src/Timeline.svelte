@@ -34,6 +34,19 @@
 
   let canvasElement: HTMLCanvasElement;
   let chartInstance: Chart | null = null;
+  let zoomPluginLoaded = false;
+
+  async function loadZoomPlugin() {
+    if (typeof window !== 'undefined' && !zoomPluginLoaded) {
+      try {
+        const zoomPlugin = await import('chartjs-plugin-zoom');
+        Chart.register(zoomPlugin.default);
+        zoomPluginLoaded = true;
+      } catch (error) {
+        console.warn('Failed to load zoom plugin:', error);
+      }
+    }
+  }
 
   function setTimeFromClick(event: ChartEvent): void {
     if (!chartInstance) return;
@@ -60,8 +73,11 @@
     chartInstance.update();
   }
 
-  function createChart(): void {
+  async function createChart(): Promise<void> {
     if (!canvasElement || !poseData) return;
+
+    // Load zoom plugin if not already loaded
+    await loadZoomPlugin();
 
     // Destroy existing chart
     if (chartInstance) {
@@ -121,6 +137,23 @@
           drawTime: 'afterDatasetsDraw' as const,
           annotations: {'playhead': annotation},
         },
+        ...(zoomPluginLoaded && {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true
+              },
+              mode: 'x' as const,
+            },
+            pan: {
+              enabled: true,
+              mode: 'x' as const,
+            },
+          }
+        })
       },
     };
 
@@ -135,8 +168,26 @@
     chartInstance = new Chart(ctx, config);
   }
 
-  onMount(() => {
-    createChart();
+  function zoomIn() {
+    if (chartInstance && zoomPluginLoaded) {
+      chartInstance.zoom(1.2);
+    }
+  }
+
+  function zoomOut() {
+    if (chartInstance && zoomPluginLoaded) {
+      chartInstance.zoom(0.8);
+    }
+  }
+
+  function resetZoom() {
+    if (chartInstance && zoomPluginLoaded) {
+      chartInstance.resetZoom();
+    }
+  }
+
+  onMount(async () => {
+    await createChart();
   });
 
   $: if (canvasElement && jointMask) {
@@ -149,11 +200,63 @@
 </script>
 
 <div id="TimeLine">
-  <canvas bind:this={canvasElement}></canvas>
+  <div class="timeline-container">
+    <div class="zoom-controls">
+      <button on:click={zoomIn} class="zoom-btn" title="Zoom In" aria-label="Zoom In">
+        <i class="fas fa-search-plus"></i>
+      </button>
+      <button on:click={zoomOut} class="zoom-btn" title="Zoom Out" aria-label="Zoom Out">
+        <i class="fas fa-search-minus"></i>
+      </button>
+      <button on:click={resetZoom} class="zoom-btn" title="Reset Zoom" aria-label="Reset Zoom">
+        <i class="fas fa-expand-arrows-alt"></i>
+      </button>
+    </div>
+    <canvas bind:this={canvasElement}></canvas>
+  </div>
 </div>
 
 <style>
   #TimeLine {
-    height: 15vh;
+    height: 12vh;
+  }
+
+  .timeline-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .zoom-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+  }
+
+  .zoom-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .zoom-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+
+  .zoom-btn:active {
+    transform: scale(0.95);
   }
 </style>

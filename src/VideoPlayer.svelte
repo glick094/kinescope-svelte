@@ -18,12 +18,17 @@
     joints: { [key: string]: JointData };
   }
 
+  interface JointMask {
+    [jointName: string]: string[];
+  }
+
   export let videoSrc: string;
   export let setSyncedTime: (time: number) => void;
   export let videoElement: HTMLVideoElement;
   export let poseData: PoseData | null = null;
   export let syncedTime: number = 0;
   export let isLoading: boolean = false;
+  export let jointMask: JointMask = {};
 
   let videoError: string = '';
   let overlayCanvas: HTMLCanvasElement;
@@ -96,7 +101,15 @@
       // Find the frame closest to current time
       const frame = jointData.frames.find((f: FrameData) => Math.abs(f.t - currentTime) < tolerance);
       if (frame) {
-        drawLandmark(frame.x * overlayCanvas.width, frame.y * overlayCanvas.height, jointName, jointData.color);
+        // Check if this joint is selected for display
+        const isSelected = jointMask[jointName] && jointMask[jointName].length > 0;
+        drawLandmark(
+          frame.x * overlayCanvas.width, 
+          frame.y * overlayCanvas.height, 
+          jointName, 
+          jointData.color,
+          isSelected
+        );
       }
     });
     
@@ -104,23 +117,37 @@
     drawPoseConnections(currentTime);
   }
 
-  function drawLandmark(x: number, y: number, jointName: string, color: [number, number, number]) {
+  function drawLandmark(x: number, y: number, jointName: string, color: [number, number, number], isSelected: boolean = false) {
     if (!overlayCtx) return;
     
-    overlayCtx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-    overlayCtx.strokeStyle = 'white';
-    overlayCtx.lineWidth = 2;
-    
-    // Draw circle
-    overlayCtx.beginPath();
-    overlayCtx.arc(x, y, 6, 0, 2 * Math.PI);
-    overlayCtx.fill();
-    overlayCtx.stroke();
-    
-    // Draw label
-    overlayCtx.fillStyle = 'white';
-    overlayCtx.font = '12px Arial';
-    overlayCtx.fillText(jointName.replace('_', ' '), x + 8, y - 8);
+    if (isSelected) {
+      // Draw full colored landmark with label for selected joints
+      overlayCtx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+      overlayCtx.strokeStyle = 'white';
+      overlayCtx.lineWidth = 2;
+      
+      // Draw larger circle
+      overlayCtx.beginPath();
+      overlayCtx.arc(x, y, 6, 0, 2 * Math.PI);
+      overlayCtx.fill();
+      overlayCtx.stroke();
+      
+      // Draw label
+      overlayCtx.fillStyle = 'white';
+      overlayCtx.font = '12px Arial';
+      overlayCtx.fillText(jointName.replace('_', ' '), x + 8, y - 8);
+    } else {
+      // Draw small white dot for unselected joints
+      overlayCtx.fillStyle = 'white';
+      overlayCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+      overlayCtx.lineWidth = 1;
+      
+      // Draw smaller circle
+      overlayCtx.beginPath();
+      overlayCtx.arc(x, y, 3, 0, 2 * Math.PI);
+      overlayCtx.fill();
+      overlayCtx.stroke();
+    }
   }
 
   function drawPoseConnections(currentTime: number) {

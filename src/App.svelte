@@ -6,6 +6,8 @@
   import Timeline from './Timeline.svelte';
   import ConsoleComponent from './ConsoleComponent.svelte';
   import PoseProcessingPanel from './PoseProcessingPanel.svelte';
+  import VideoUploader from './VideoUploader.svelte';
+  import KeypointSelector from './KeypointSelector.svelte';
   import { PoseProcessor, type PoseProcessingResult } from './lib/poseProcessor';
 
   // Types
@@ -209,7 +211,21 @@
 </svelte:head>
 
 <div>
-  <MenuBar {poseData} setJointMask={setJointMaskHandler}/>
+  <div class="header-bar">
+    <MenuBar poseData={poseData} videoSrc={videoSrc} videoElement={videoElement}/>
+    <div class="header-controls">
+      <VideoUploader setVideoSrc={setVideoSrcHandler}/>
+      <PoseProcessingPanel 
+        isProcessing={isProcessingPose}
+        progress={processingProgress}
+        onStartProcessing={startPoseProcessing}
+        onStopProcessing={stopPoseProcessing}
+        onCSVUploaded={handleCSVUpload}
+        videoLoaded={!!videoSrc}
+      />
+      <KeypointSelector poseData={poseData} setJointMask={setJointMaskHandler} step2Completed={processingProgress > 0 && !isProcessingPose}/>
+    </div>
+  </div>
   
   <div class="AppPanels">
     <div class="Scatter">
@@ -222,27 +238,18 @@
     <div class="VideoSection">
       {#if videoSrc}
         <div class="video-container">
-          <PoseProcessingPanel 
-            isProcessing={isProcessingPose}
-            progress={processingProgress}
-            onStartProcessing={startPoseProcessing}
-            onStopProcessing={stopPoseProcessing}
-            onCSVUploaded={handleCSVUpload}
-            videoLoaded={!!videoSrc}
-          />
-          <VideoPlayer {videoSrc} setSyncedTime={setSyncedTime} bind:videoElement poseData={poseData} {syncedTime} isLoading={isProcessingPose}/>
-          <ConsoleComponent {syncedTime} setSyncedTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} />
+          <VideoPlayer {videoSrc} setSyncedTime={setSyncedTime} bind:videoElement poseData={poseData} {syncedTime} isLoading={isProcessingPose} {jointMask}/>
+          <ConsoleComponent {syncedTime} {videoElement} />
         </div>
       {:else}
         <div class="placeholder">
-          <div>Video will appear here</div>
-          <ConsoleComponent {syncedTime} setSyncedTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} />
+          <div>Upload a video to begin</div>
         </div>
       {/if}
     </div>
   </div>
   
-  <div style="height: 10vh"></div>
+  <div style="height: 5vh"></div>
   
   <div>
     {#if videoSrc}
@@ -258,24 +265,25 @@
   }
 
   :global(.AppPanels) {
-    align-items: center;
     display: flex;
-    justify-content: center;
-    height: 100%;
+    height: 70vh;
     gap: 20px;
+    padding: 20px;
   }
 
   :global(.Scatter) {
-    height: 50%;
-    width: 50%;
+    flex: 1;
+    height: 100%;
+    min-width: 400px;
   }
 
   :global(.VideoSection) {
-    height: 50%;
-    width: 50%;
+    flex: 1;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 400px;
   }
 
   .placeholder {
@@ -290,6 +298,23 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+
+  .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    position: relative;
+    z-index: 100;
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
 
   .video-container {

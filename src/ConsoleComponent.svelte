@@ -1,15 +1,11 @@
 <script lang="ts">
   export let syncedTime: number;
-  export let setSyncedTime: (time: number) => void;
-  export let setVideoSrc: (src: string) => void;
   export let videoElement: HTMLVideoElement;
 
   let playing: boolean = false;
-  let fileInput: HTMLInputElement;
 
   function playVideo(): void {
     if (videoElement?.readyState != 4) {
-      openFile();
       return;
     }
     videoElement?.play();
@@ -18,7 +14,6 @@
 
   function pauseVideo(): void {
     if (videoElement?.readyState != 4) {
-      openFile();
       return;
     }
     videoElement?.pause();
@@ -37,7 +32,6 @@
   
   function advanceFrame(): void {
     if (videoElement?.readyState != 4) {
-      openFile();
       return;
     }
     videoElement?.pause();
@@ -47,7 +41,6 @@
 
   function decreaseFrame(): void {
     if (videoElement?.readyState != 4) {
-      openFile();
       return;
     }
     videoElement?.pause();
@@ -57,53 +50,30 @@
 
   function setLooping(): void {
     if (videoElement?.readyState != 4) {
-      openFile();
       return;
     }
     videoElement.loop = !videoElement.loop;
   }
 
-  function openFile(): void {
-    fileInput.click();
-  }
-
-  function handleFileUpload(e: Event): void {
-    const target = e.target as HTMLInputElement;
-    const file = target.files?.[0];
-    if (file) {
-      const videoURL = URL.createObjectURL(file);
-      setVideoSrc(videoURL);
-    }
-  }
 </script>
 
 <div class="video-controls">
-  <input 
-    bind:this={fileInput}
-    style="display: none" 
-    type="file" 
-    accept="video/*,.mp4,.mov,.avi,.mkv,.webm" 
-    on:change={handleFileUpload} 
-  />
-  <button on:click={openFile} class="control-btn folder-btn" title="OpenFile">
-    <i class="fas fa-folder-open"></i>
-  </button>
-  <button on:click={decreaseFrame} class="control-btn step-back-btn" title="Step Backward">
+  <button on:click={decreaseFrame} class="control-btn step-back-btn" title="Step Backward" aria-label="Step Backward">
     <i class="fas fa-step-backward"></i>
   </button>
   {#if playing}
-    <button on:click={pauseVideo} class="control-btn pause-btn" title="Pause">
+    <button on:click={pauseVideo} class="control-btn pause-btn" title="Pause" aria-label="Pause">
       <i class="fas fa-pause"></i>
     </button>
   {:else}
-    <button on:click={playVideo} class="control-btn play-btn" title="Play">
+    <button on:click={playVideo} class="control-btn play-btn" title="Play" aria-label="Play">
       <i class="fas fa-play"></i>
     </button>
   {/if}
-  <button on:click={advanceFrame} class="control-btn step-forward-btn" title="Step Forward">
+  <button on:click={advanceFrame} class="control-btn step-forward-btn" title="Step Forward" aria-label="Step Forward">
     <i class="fas fa-step-forward"></i>
   </button>
-  <button on:click={setLooping} class="control-btn loop-btn" title="Loop">
+  <button on:click={setLooping} class="control-btn loop-btn" title="Loop" aria-label="Loop">
     <i class="fas fa-sync"></i>
   </button>
 </div>
@@ -137,7 +107,6 @@
     transform: scale(0.95);
   }
   
-  .folder-btn,
   .play-btn,
   .pause-btn,
   .step-back-btn,
