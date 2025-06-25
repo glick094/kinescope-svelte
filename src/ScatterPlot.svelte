@@ -49,6 +49,48 @@
     }
   }
 
+  // Color-blind friendly palette
+  const colorPalette = [
+    '#d62728', // red
+    '#2ca02c', // green
+    '#1f77b4', // blue
+    '#ff7f0e', // orange
+    '#9467bd', // purple
+    '#8c564b', // brown
+    '#e377c2', // pink
+    '#7f7f7f', // gray
+    '#bcbd22', // olive
+    '#17becf'  // cyan
+  ];
+
+  function getTemporalColor(baseColor: string, frameIndex: number, currentFrameIndex: number): string {
+    const distance = Math.abs(frameIndex - currentFrameIndex);
+    
+    if (distance === 0) {
+      // Current frame - full opacity, larger size
+      return baseColor;
+    } else if (distance <= 5) {
+      // Nearby frames - fade based on distance
+      const opacity = Math.max(0.3, 1 - (distance * 0.15));
+      return baseColor.replace('1)', `${opacity})`);
+    } else {
+      // Distant frames - low opacity
+      return baseColor.replace('1)', '0.2)');
+    }
+  }
+
+  function getPointRadius(frameIndex: number, currentFrameIndex: number): number {
+    const distance = Math.abs(frameIndex - currentFrameIndex);
+    
+    if (distance === 0) {
+      return 6; // Current frame
+    } else if (distance <= 5) {
+      return Math.max(2, 6 - distance);
+    } else {
+      return 2; // Default size
+    }
+  }
+
   async function createChart(): Promise<void> {
     if (!canvasElement || !poseData) return;
 
@@ -67,15 +109,28 @@
       return acc;
     }, []);
 
-    let datasets = valid_joints.map((joint_name: string) => {
+    let datasets = valid_joints.map((joint_name: string, index: number) => {
       const jointData = poseData.GetJoint2D(joint_name);
+      const baseColor = colorPalette[index % colorPalette.length];
+      const baseColorWithAlpha = baseColor.replace('#', '').match(/.{2}/g)?.map(x => parseInt(x, 16)).join(', ');
+      const rgbaBaseColor = `rgba(${baseColorWithAlpha}, 1)`;
+      
+      // Find current frame index
+      const tolerance = 0.1;
+      const currentFrameIndex = jointData.findIndex(point => Math.abs(point.t - syncedTime) < tolerance);
       
       return {
         label: joint_name,
-        data: jointData.map(point => ({ x: point.x, y: point.y })), // Convert to Chart.js format
-        backgroundColor: poseData.GetJointColor(joint_name, 1.0),
-        pointBackgroundColor: poseData.GetJointColorDynamic(joint_name, 20, syncedTime),
-        borderColor: poseData.GetJointColor(joint_name, 1.0),
+        data: jointData.map((point, frameIndex) => ({ 
+          x: point.x, 
+          y: point.y,
+          radius: getPointRadius(frameIndex, currentFrameIndex)
+        })),
+        backgroundColor: jointData.map((_, frameIndex) => 
+          getTemporalColor(rgbaBaseColor, frameIndex, currentFrameIndex)
+        ),
+        borderColor: rgbaBaseColor,
+        borderWidth: 1,
         showLine: false,
         animation: {
           duration: 0
@@ -87,8 +142,7 @@
       datasets = [{
         label: "", 
         data: [],
-        backgroundColor: 'rgba(0,0,0,0)',
-        pointBackgroundColor: [],
+        backgroundColor: [],
         borderColor: 'rgba(0,0,0,0)',
         showLine: false,
         animation: {
@@ -110,17 +164,23 @@
         aspectRatio: 1,
         scales: {
           y: {
-            min: (-2 / zoomLevel) + panY,
-            max: (2 / zoomLevel) + panY,
+            min: Math.max(0, (1.05 / zoomLevel) + panY),
+            max: Math.min(1, (-0.05 / zoomLevel) + panY),
+            reverse: true // Y=0 at top, Y=1 at bottom to match video
           },
           x: {
-            min: (-2 / zoomLevel) + panX,
-            max: (2 / zoomLevel) + panX,
+            min: Math.max(0, (-0.05 / zoomLevel) + panX),
+            max: Math.min(1, (1.05 / zoomLevel) + panX),
           }
         },
         elements: {
           point: {
-            radius: 2
+            radius: (context: any) => {
+              if (context.parsed) {
+                return context.raw.radius || 2;
+              }
+              return 2;
+            }
           }
         },
         plugins: {

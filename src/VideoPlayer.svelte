@@ -105,7 +105,7 @@
         const isSelected = jointMask[jointName] && jointMask[jointName].length > 0;
         drawLandmark(
           frame.x * overlayCanvas.width, 
-          frame.y * overlayCanvas.height, 
+          (1 - frame.y) * overlayCanvas.height, // Flip Y back for display overlay
           jointName, 
           jointData.color,
           isSelected
@@ -181,8 +181,8 @@
       
       if (frame1 && frame2) {
         overlayCtx.beginPath();
-        overlayCtx.moveTo(frame1.x * overlayCanvas.width, frame1.y * overlayCanvas.height);
-        overlayCtx.lineTo(frame2.x * overlayCanvas.width, frame2.y * overlayCanvas.height);
+        overlayCtx.moveTo(frame1.x * overlayCanvas.width, (1 - frame1.y) * overlayCanvas.height);
+        overlayCtx.lineTo(frame2.x * overlayCanvas.width, (1 - frame2.y) * overlayCanvas.height);
         overlayCtx.stroke();
       }
     });
@@ -224,17 +224,21 @@
   .video-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
-    max-height: 400px;
+    height: 100%;
     border: 2px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
   }
 
   .video-player {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
     display: block;
   }
 

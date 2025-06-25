@@ -91,10 +91,25 @@
       return acc;
     }, []);
 
-    const datasets = valid_joints.map((joint_name: string) => ({
+    // Color-blind friendly palette (same as ScatterPlot)
+    const colorPalette = [
+      '#d62728', // red
+      '#2ca02c', // green
+      '#1f77b4', // blue
+      '#ff7f0e', // orange
+      '#9467bd', // purple
+      '#8c564b', // brown
+      '#e377c2', // pink
+      '#7f7f7f', // gray
+      '#bcbd22', // olive
+      '#17becf'  // cyan
+    ];
+
+    const datasets = valid_joints.map((joint_name: string, index: number) => ({
       label: joint_name,
       data: poseData.GetJointSpeed(joint_name),
-      borderColor: poseData.GetJointColor(joint_name),
+      borderColor: colorPalette[index % colorPalette.length],
+      backgroundColor: colorPalette[index % colorPalette.length] + '20', // 20% opacity
       fill: false,
       animation: {
         duration: 0

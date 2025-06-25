@@ -122,7 +122,7 @@ export function parseCSVToPoseData(csvContent: string): PoseProcessingResult {
         joints[landmarkName].frames.push({
           t: frameTimeSeconds,
           x: x,
-          y: y,
+          y: 1 - y, // Flip Y coordinate so 0 is at bottom, 1 is at top
           z: z
         });
       }
