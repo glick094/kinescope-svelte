@@ -1,0 +1,48 @@
+= Development log
+
+== Core Functionality Checklist
+
+- [x] convert project to svelte
+- [x] get videos loading and playing
+-- [ ] issues with mp4 not loading with some codec
+- [x] implement mediapipe to process frame data from video
+- [x] implement csv upload of preprocessed mediapipe data
+- [x] get xy plot showing points
+- [x] get timeline with speed showing points
+- [x] get xy plot showing specific keypoints
+- [x] get timeline showing specific keypoints
+- [ ] be able to click on an XY point and jump to that frame
+- [ ] be able to highlight a region of XY points, and shade in those frames on the timeline
+- [ ] for uploaded data, make sure that frame data is included, and synced data is 
+
+== Layout checklist
+
+- [x] get screen to resize with window
+- [ ] reduce vertical height of video and XY plot, so timeline is taller
+- [ ] XY plot aspect ratio should match the aspect ratio of the video. 
+- [x] get XY plot to be X: -0.2->1.2 and Y: 1.2 -> -0.2 so it looks more or less what's on screen
+-- [ ] don't manually change the values on y coords
+- [ ] timeline x axis labels should be on the bottom of the graph
+- [x] adjust opacity of other points so they are less glaring
+- [x] make the frame XY point even bigger so it stands out clearly
+- [x] for the forward-backward "onion skin" on XY plot, make the size difference more visible, use 10 points 
+- [x] for the forward-backward "onion skin" on XY plot, maybe we should connect the points? 
+- [ ] alphabetize the keypoints in list
+
+== Colors and Themes
+
+- [ ] add themes that can be selected
+- [x] use Paul Tol's color blind palette
+- [ ] set plotting colors to always follow first is always the same color 
+- [ ] make color on the plot match color on mediapipe overlay
+
+// This is a lot closer, as shown here [Image #1]. (1) change our color palette to Paul Tol's color blind palette (2) I'd like to reduce the vertical height of the video and the XY plot. The timeline should be taller (3) I don't want to actually change the values of the Y axis, I just want to reverse the order. (4)  increase the opacity of the other XY point even more as they are too visible. Make the current frame XY point larger, and include maybe the 15 points on either side. These should really stand out. (5) Lastly, I notice on the video overlay when I push play, there seems to be a delay in the pose data ralated to the video, as shown. It always catches up, but maybe we should use the `frame_time_ms` column as the frame from the csv?
+
+
+// WE SHOULD USE THIS TO DO EYE TRACKING VIDEOS FROM A SCREEN. 
+
+
+== Logistics
+
+- [ ] plot `frame_time_ms` from pose_data on the corresponding frame of the video. 
+- [ ] where tracking was lost - gaps in processing -- don't necessarly

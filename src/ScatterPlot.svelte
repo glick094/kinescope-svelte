@@ -51,16 +51,26 @@
 
   // Color-blind friendly palette
   const colorPalette = [
-    '#d62728', // red
-    '#2ca02c', // green
-    '#1f77b4', // blue
-    '#ff7f0e', // orange
-    '#9467bd', // purple
-    '#8c564b', // brown
-    '#e377c2', // pink
-    '#7f7f7f', // gray
-    '#bcbd22', // olive
-    '#17becf'  // cyan
+    // '#d62728', // red
+    // '#2ca02c', // green
+    // '#1f77b4', // blue
+    // '#ff7f0e', // orange
+    // '#9467bd', // purple
+    // '#8c564b', // brown
+    // '#e377c2', // pink
+    // '#7f7f7f', // gray
+    // '#bcbd22', // olive
+    // '#17becf'  // cyan
+    '#cc6677', // rose
+    '#332288', // indigo  
+    '#ddcc77', // khaki
+    '#117733', // forest green
+    '#88ccee', // sky blue
+    '#882255', // maroon
+    '#44aa99', // teal
+    '#999933', // olive green
+    '#aa4499', // violet
+    '#dddddd', // light gray
   ];
 
   function getTemporalColor(baseColor: string, frameIndex: number, currentFrameIndex: number): string {
@@ -69,13 +79,13 @@
     if (distance === 0) {
       // Current frame - full opacity, larger size
       return baseColor;
-    } else if (distance <= 5) {
+    } else if (distance <= 10) {
       // Nearby frames - fade based on distance
-      const opacity = Math.max(0.3, 1 - (distance * 0.15));
+      const opacity = Math.max(0.005, 1 - (distance * 0.15));
       return baseColor.replace('1)', `${opacity})`);
     } else {
       // Distant frames - low opacity
-      return baseColor.replace('1)', '0.2)');
+      return baseColor.replace('1)', '0.005)');
     }
   }
 
@@ -83,11 +93,11 @@
     const distance = Math.abs(frameIndex - currentFrameIndex);
     
     if (distance === 0) {
-      return 6; // Current frame
-    } else if (distance <= 5) {
-      return Math.max(2, 6 - distance);
+      return 10; // Current frame
+    } else if (distance <= 10) {
+      return Math.max(1.5, 7 - distance);
     } else {
-      return 2; // Default size
+      return 1.5; // Default size
     }
   }
 
@@ -143,6 +153,7 @@
         label: "", 
         data: [],
         backgroundColor: [],
+        borderWidth: 1,
         borderColor: 'rgba(0,0,0,0)',
         showLine: false,
         animation: {
@@ -164,13 +175,13 @@
         aspectRatio: 1,
         scales: {
           y: {
-            min: Math.max(0, (1.05 / zoomLevel) + panY),
-            max: Math.min(1, (-0.05 / zoomLevel) + panY),
-            reverse: true // Y=0 at top, Y=1 at bottom to match video
+            min: Math.max(-0.05, (1.05 / zoomLevel) + panY),
+            max: Math.min(1.05, (-0.05 / zoomLevel) + panY),
+            reverse: false // Y=0 at top, Y=1 at bottom to match video
           },
           x: {
-            min: Math.max(0, (-0.05 / zoomLevel) + panX),
-            max: Math.min(1, (1.05 / zoomLevel) + panX),
+            min: Math.max(-0.05, (-0.05 / zoomLevel) + panX),
+            max: Math.min(1.05, (1.05 / zoomLevel) + panX),
           }
         },
         elements: {

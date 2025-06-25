@@ -1,8 +1,8 @@
 # Correct Project Structure for Kinescope Svelte TypeScript
 
-## 📁 Complete Directory Structure
+## Directory Structure
 
-```
+```bash
 kinescope-svelte/                    # Root project directory
 ├── index.html                       # ✅ Goes in ROOT (not in public/)
 ├── package.json                     # Project dependencies
@@ -30,22 +30,14 @@ kinescope-svelte/                    # Root project directory
     └── favicon.ico                  # Favicon (auto-generated)
 ```
 
-## 🔧 Key Structure Notes
+## Directory Structure Notes
 
-### ✅ Correct Locations:
+### Correct Locations
 
 - **`index.html`** → Root directory (same level as package.json)
 - **All `.svelte` components** → `src/` directory
 - **Static assets** → `static/` directory (Svelte uses `static/`, not `public/`)
 - **TypeScript entry** → `src/main.ts`
-
-### ❌ Common Mistakes:
-
-- ~~`public/` directory~~ → Use `static/` instead
-- ~~`index.html` in `public/`~~ → Goes in root directory
-- ~~Components outside `src/`~~ → All components go in `src/`
-
-## 📋 File Creation Checklist
 
 ### 1. Root Directory Files
 
@@ -83,7 +75,7 @@ static/
 └── favicon.ico             # Auto-generated
 ```
 
-## 🚀 Setup Commands (Corrected)
+## Setup Commands
 
 ```bash
 # 1. Create Svelte project with TypeScript
@@ -110,51 +102,7 @@ npm install --save-dev @tsconfig/svelte svelte-check typescript
 npm install --save-dev gh-pages
 ```
 
-## 📝 Files to Replace/Create
-
-After running the setup commands above, you'll need to:
-
-### Replace These Auto-Generated Files:
-
-1. **`index.html`** (root) - Update script src to `/src/main.ts`
-2. **`src/main.ts`** - Replace `src/main.js`
-3. **`src/App.svelte`** - Replace with our TypeScript version
-4. **`package.json`** - Add our additional dependencies
-5. **`vite.config.ts`** - Set correct base path for GitHub Pages
-
-### Create These New Files:
-
-6. **`tsconfig.json`** - TypeScript configuration
-7. **`tsconfig.node.json`** - Node TypeScript config
-8. **`src/types.d.ts`** - Global type declarations
-9. **`src/app.css`** - Global styles
-10. **`src/MenuBar.svelte`** - Menu component
-11. **`src/VideoPlayer.svelte`** - Video component
-12. **`src/ScatterPlot.svelte`** - Chart component
-13. **`src/Timeline.svelte`** - Timeline component
-14. **`src/ConsoleComponent.svelte`** - Controls component
-15. **`README.md`** - Updated documentation
-
-### Add to Static Directory:
-
-16. **`static/ks.svg`** - Your logo file (you'll need to create/provide this)
-
-## 🎯 Quick Verification
-
-After setup, your project should look like:
-
-```bash
-ls -la kinescope-svelte/
-# Should show: index.html, package.json, vite.config.ts, etc.
-
-ls -la kinescope-svelte/src/
-# Should show: main.ts, App.svelte, and all other .svelte components
-
-ls -la kinescope-svelte/static/
-# Should show: favicon.ico (auto-generated) and your ks.svg
-```
-
-## 🔄 Development Workflow
+## Development Workflow
 
 ```bash
 # Start development server
@@ -170,4 +118,4 @@ npm run build
 npm run deploy
 ```
 
-The key correction: **Svelte uses `static/` for assets, not `public/`**, and **`index.html` goes in the root directory**!
+Note: **Svelte uses `static/` for assets, not `public/`**, and **`index.html` goes in the root directory**!

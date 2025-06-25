@@ -51,6 +51,7 @@ npm run test
 ### Data Flow Pattern
 
 The application follows a centralized state pattern where:
+
 1. `App.svelte` maintains the primary `PoseData` instance and synchronization state
 2. Components receive data through props and communicate changes via callback functions
 3. Time synchronization (`syncedTime`) is shared across video, timeline, and visualization components
