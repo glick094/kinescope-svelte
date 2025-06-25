@@ -1,8 +1,10 @@
 <script lang="ts">
-  import { onMount, afterUpdate } from 'svelte';
+  import { onMount } from 'svelte';
   import { Chart, registerables, type ChartConfiguration } from 'chart.js';
 
   Chart.register(...registerables);
+  
+  let zoomPluginLoaded = false;
 
   interface JointData {
     frames: Array<{ t: number; x: number; y: number; z?: number }>;
@@ -26,12 +28,32 @@
   export let poseData: PoseData;
   export let jointMask: JointMask;
   export let syncedTime: number;
+  export let isLoading: boolean = false;
+
+  let zoomLevel = 1;
+  let panX = 0;
+  let panY = 0;
 
   let canvasElement: HTMLCanvasElement;
   let chartInstance: Chart | null = null;
 
-  function createChart(): void {
+  async function loadZoomPlugin() {
+    if (typeof window !== 'undefined' && !zoomPluginLoaded) {
+      try {
+        const zoomPlugin = await import('chartjs-plugin-zoom');
+        Chart.register(zoomPlugin.default);
+        zoomPluginLoaded = true;
+      } catch (error) {
+        console.warn('Failed to load zoom plugin:', error);
+      }
+    }
+  }
+
+  async function createChart(): Promise<void> {
     if (!canvasElement || !poseData) return;
+
+    // Load zoom plugin if not already loaded
+    await loadZoomPlugin();
 
     // Destroy existing chart
     if (chartInstance) {
@@ -45,17 +67,36 @@
       return acc;
     }, []);
 
-    let datasets = valid_joints.map((joint_name: string) => ({
-      label: joint_name,
-      data: poseData.GetJoint2D(joint_name),
-      backgroundColor: poseData.GetJointColor(joint_name, 1.0),
-      pointBackgroundColor: poseData.GetJointColorDynamic(joint_name, 20, syncedTime),
-      animation: {
-        duration: 0
-      }
-    }));
+    let datasets = valid_joints.map((joint_name: string) => {
+      const jointData = poseData.GetJoint2D(joint_name);
+      
+      return {
+        label: joint_name,
+        data: jointData.map(point => ({ x: point.x, y: point.y })), // Convert to Chart.js format
+        backgroundColor: poseData.GetJointColor(joint_name, 1.0),
+        pointBackgroundColor: poseData.GetJointColorDynamic(joint_name, 20, syncedTime),
+        borderColor: poseData.GetJointColor(joint_name, 1.0),
+        showLine: false,
+        animation: {
+          duration: 0
+        }
+      };
+    });
 
-    if (datasets.length == 0) datasets = [{label: "", data: []}];
+    if (datasets.length == 0) {
+      datasets = [{
+        label: "", 
+        data: [],
+        backgroundColor: 'rgba(0,0,0,0)',
+        pointBackgroundColor: [],
+        borderColor: 'rgba(0,0,0,0)',
+        showLine: false,
+        animation: {
+          duration: 0
+        }
+      }];
+    }
+
 
     const data = { datasets: datasets };
     const ctx = canvasElement.getContext('2d')!;
@@ -69,12 +110,12 @@
         aspectRatio: 1,
         scales: {
           y: {
-            min: -2,
-            max: 2,
+            min: (-2 / zoomLevel) + panY,
+            max: (2 / zoomLevel) + panY,
           },
           x: {
-            min: -2,
-            max: 2,
+            min: (-2 / zoomLevel) + panX,
+            max: (2 / zoomLevel) + panX,
           }
         },
         elements: {
@@ -89,7 +130,24 @@
           title: {
             display: false,
             text: '2D Chart'
-          }
+          },
+          ...(zoomPluginLoaded && {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true
+                },
+                mode: 'xy',
+              },
+              pan: {
+                enabled: true,
+                mode: 'xy',
+              },
+            }
+          })
         }
       },
     };
@@ -97,8 +155,26 @@
     chartInstance = new Chart(ctx, config);
   }
 
-  onMount(() => {
-    createChart();
+  function zoomIn() {
+    if (chartInstance && zoomPluginLoaded) {
+      chartInstance.zoom(1.2);
+    }
+  }
+
+  function zoomOut() {
+    if (chartInstance && zoomPluginLoaded) {
+      chartInstance.zoom(0.8);
+    }
+  }
+
+  function resetZoom() {
+    if (chartInstance && zoomPluginLoaded) {
+      chartInstance.resetZoom();
+    }
+  }
+
+  onMount(async () => {
+    await createChart();
   });
 
   $: if (canvasElement && (jointMask || syncedTime)) {
@@ -106,6 +182,93 @@
   }
 </script>
 
-<div>
+<div class="scatter-container">
+  <div class="zoom-controls">
+    <button on:click={zoomIn} class="zoom-btn" title="Zoom In" aria-label="Zoom In">
+      <i class="fas fa-search-plus"></i>
+    </button>
+    <button on:click={zoomOut} class="zoom-btn" title="Zoom Out" aria-label="Zoom Out">
+      <i class="fas fa-search-minus"></i>
+    </button>
+    <button on:click={resetZoom} class="zoom-btn" title="Reset Zoom" aria-label="Reset Zoom">
+      <i class="fas fa-expand-arrows-alt"></i>
+    </button>
+  </div>
   <canvas bind:this={canvasElement}></canvas>
+  
+  {#if isLoading}
+    <div class="loading-overlay">
+      <div class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+      </div>
+      <div class="loading-text">Processing pose data...</div>
+    </div>
+  {/if}
 </div>
+
+<style>
+  .scatter-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .zoom-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+  }
+
+  .zoom-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .zoom-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+
+  .zoom-btn:active {
+    transform: scale(0.95);
+  }
+
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  .loading-spinner {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+  }
+
+  .loading-text {
+    color: #666;
+    font-weight: 500;
+  }
+</style>

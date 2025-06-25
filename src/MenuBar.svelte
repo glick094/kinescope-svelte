@@ -35,7 +35,9 @@
   }
 
   function toggleMenu(): void {
-    isOpen = !isOpen && poseData;
+    if (poseData) {
+      isOpen = !isOpen;
+    }
   }
 
   $: jointNames = poseData && poseData.joints ? Object.keys(poseData.joints) : [];

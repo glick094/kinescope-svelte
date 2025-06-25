@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, afterUpdate } from 'svelte';
+  import { onMount } from 'svelte';
   import { Chart, registerables, type ChartConfiguration, type ChartEvent } from 'chart.js';
   import annotationPlugin from 'chartjs-plugin-annotation';
 
@@ -40,7 +40,7 @@
 
     const xScale = chartInstance.scales.x;
     let xValue = xScale.getValueForPixel((event as any).native.offsetX);
-    if (xValue === null) return;
+    if (xValue === null || xValue === undefined) return;
     
     xValue = Math.max(0, xValue);
     const xFloor = Math.floor(xValue);

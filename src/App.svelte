@@ -5,6 +5,8 @@
   import ScatterPlot from './ScatterPlot.svelte';
   import Timeline from './Timeline.svelte';
   import ConsoleComponent from './ConsoleComponent.svelte';
+  import PoseProcessingPanel from './PoseProcessingPanel.svelte';
+  import { PoseProcessor, type PoseProcessingResult } from './lib/poseProcessor';
 
   // Types
   interface FrameData {
@@ -25,11 +27,13 @@
   }
 
   // State variables
-  let time: number = 0;
   let videoSrc: string | null = null;
   let syncedTime: number = 0;
   let videoElement: HTMLVideoElement;
   let jointMask: JointMask = {};
+  let poseProcessor: PoseProcessor;
+  let isProcessingPose: boolean = false;
+  let processingProgress: number = 0;
 
   // PoseData class
   class PoseData {
@@ -37,7 +41,7 @@
 
     GetJoint1D(joint_name: string, dim_name: string): { x: number; y: number }[] {
       if (!this.joints.hasOwnProperty(joint_name)) return [];
-      const time_synced = this.joints[joint_name].frames.map((frame: FrameData, index: number) => ({
+      const time_synced = this.joints[joint_name].frames.map((frame: FrameData) => ({
         x: frame["t"],
         y: frame[dim_name as keyof FrameData] as number,
       }));
@@ -46,19 +50,34 @@
 
     GetJointSpeed(joint_name: string): { x: number; y: number }[] {
       if (!this.joints.hasOwnProperty(joint_name)) return [];
-      const speeds = this.joints[joint_name].frames.slice(1).map((frame: FrameData, i: number) => {
-        const prev = this.joints[joint_name].frames[i];
+      const frames = this.joints[joint_name].frames;
+      if (frames.length < 2) return [];
+      
+      const speeds = frames.slice(1).map((frame: FrameData, i: number) => {
+        const prev = frames[i];
         const dt = frame.t - prev.t;
+        
+        // Skip frames with zero or negative time difference
+        if (dt <= 0) return null;
+        
         const dx = frame.x - prev.x;
         const dy = frame.y - prev.y;
-        return {x: frame.t, y: Math.sqrt(dx * dx + dy * dy) / dt};
-      });
+        const dz = frame.z !== undefined && prev.z !== undefined ? frame.z - prev.z : 0;
+        
+        // Calculate 3D speed if z-coordinate available, otherwise 2D speed
+        const speed = dz !== 0 ? 
+          Math.sqrt(dx * dx + dy * dy + dz * dz) / dt :
+          Math.sqrt(dx * dx + dy * dy) / dt;
+          
+        return {x: frame.t, y: speed};
+      }).filter(point => point !== null) as { x: number; y: number }[];
+      
       return speeds;
     }
 
     GetJoint2D(joint_name: string): { t: number; x: number; y: number }[] {
       if (!this.joints.hasOwnProperty(joint_name)) return [];
-      const time_synced = this.joints[joint_name].frames.map((frame: FrameData, index: number) => ({
+      const time_synced = this.joints[joint_name].frames.map((frame: FrameData) => ({
         t: frame["t"],
         x: frame["x"],
         y: frame["y"],
@@ -68,7 +87,7 @@
 
     GetJointColorDynamic(joint_name: string, window: number = 1, keypoint: number = 0): string[] {
       if (!this.joints.hasOwnProperty(joint_name)) return [];
-      const colors = this.joints[joint_name].frames.map((frame: FrameData, index: number) => (
+      const colors = this.joints[joint_name].frames.map((frame: FrameData) => (
         `rgba(${this.joints[joint_name].color[0]},${this.joints[joint_name].color[1]},${this.joints[joint_name].color[2]},${Math.max(0, (window - Math.abs(frame.t - keypoint))/window)})`
       ));
       return colors;
@@ -80,8 +99,12 @@
       return `rgba(${colors[0]},${colors[1]},${colors[2]},${opacity})`
     }
 
-    AddJointFrame(joint_data: any): void {
+    AddJointFrame(_joint_data: any): void {
       throw new Error("not implemented!");
+    }
+
+    LoadFromMediaPipeResult(result: PoseProcessingResult): void {
+      this.joints = result.joints;
     }
   }
 
@@ -100,7 +123,7 @@
 
     poseData.joints = { 
       "right_hand": {
-        frames: times.map((xval, index) => ({
+        frames: times.map((_, index) => ({
           t: positions[index].t,
           x: positions[index].x,
           y: positions[index].y,
@@ -109,7 +132,7 @@
         units: "px",
       },
       "left_hand": {
-        frames: times.map((xval, index) => ({
+        frames: times.map((_, index) => ({
           t: positions[index].t,
           x: -positions[index].x * .9,
           y: positions[index].y * .7,
@@ -131,6 +154,54 @@
   function setVideoSrcHandler(newSrc: string): void {
     videoSrc = newSrc;
   }
+
+  async function startPoseProcessing(): Promise<void> {
+    if (!videoElement || !videoSrc || isProcessingPose) {
+      return;
+    }
+
+    isProcessingPose = true;
+    processingProgress = 0;
+
+    try {
+      poseProcessor = new PoseProcessor({
+        onProgress: (progress: number) => {
+          processingProgress = progress;
+        },
+        onComplete: (result: PoseProcessingResult) => {
+          poseData.LoadFromMediaPipeResult(result);
+          isProcessingPose = false;
+          processingProgress = 1.0;
+          // Trigger reactivity
+          poseData = poseData;
+        },
+        onError: (error: string) => {
+          console.error('Pose processing error:', error);
+          isProcessingPose = false;
+        }
+      });
+
+      await poseProcessor.processVideo(videoElement);
+    } catch (error) {
+      console.error('Failed to start pose processing:', error);
+      isProcessingPose = false;
+    }
+  }
+
+  function stopPoseProcessing(): void {
+    if (poseProcessor) {
+      poseProcessor.stopProcessing();
+    }
+    isProcessingPose = false;
+  }
+
+  function handleCSVUpload(result: PoseProcessingResult): void {
+    poseData.LoadFromMediaPipeResult(result);
+    // Trigger reactivity
+    poseData = poseData;
+    processingProgress = 1.0;
+    console.log('CSV data loaded into poseData:', poseData);
+  }
 </script>
 
 <svelte:head>
@@ -143,7 +214,7 @@
   <div class="AppPanels">
     <div class="Scatter">
       {#if videoSrc}
-        <ScatterPlot {poseData} {jointMask} {syncedTime}/>
+        <ScatterPlot {poseData} {jointMask} {syncedTime} isLoading={isProcessingPose}/>
       {:else}
         <div class="placeholder">Select a video file to begin</div>
       {/if}
@@ -151,7 +222,15 @@
     <div class="VideoSection">
       {#if videoSrc}
         <div class="video-container">
-          <VideoPlayer {videoSrc} setSyncedTime={setSyncedTime} bind:videoElement/>
+          <PoseProcessingPanel 
+            isProcessing={isProcessingPose}
+            progress={processingProgress}
+            onStartProcessing={startPoseProcessing}
+            onStopProcessing={stopPoseProcessing}
+            onCSVUploaded={handleCSVUpload}
+            videoLoaded={!!videoSrc}
+          />
+          <VideoPlayer {videoSrc} setSyncedTime={setSyncedTime} bind:videoElement poseData={poseData} {syncedTime} isLoading={isProcessingPose}/>
           <ConsoleComponent {syncedTime} setSyncedTime={setSyncedTime} setVideoSrc={setVideoSrcHandler} {videoElement} />
         </div>
       {:else}
@@ -217,7 +296,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
   }
 </style>
