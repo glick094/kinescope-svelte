@@ -150,6 +150,10 @@
           processingProgress = 1.0;
           // Trigger reactivity
           poseData = poseData;
+          // Force immediate pose overlay redraw by nudging syncedTime
+          const currentSyncedTime = syncedTime;
+          syncedTime = currentSyncedTime + 0.001;
+          setTimeout(() => { syncedTime = currentSyncedTime; }, 10);
           console.log('PoseData updated:', poseData);
         },
         onError: (error: string) => {
@@ -177,6 +181,10 @@
     // Trigger reactivity
     poseData = poseData;
     processingProgress = 1.0;
+    // Force immediate pose overlay redraw by nudging syncedTime
+    const currentSyncedTime = syncedTime;
+    syncedTime = currentSyncedTime + 0.001;
+    setTimeout(() => { syncedTime = currentSyncedTime; }, 10);
     console.log('CSV data loaded into poseData:', poseData);
   }
 </script>

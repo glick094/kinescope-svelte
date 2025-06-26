@@ -14,6 +14,13 @@
 
   let csvFileInput: HTMLInputElement;
   let isUploadingCSV: boolean = false;
+  let csvFileName: string = '';
+  let processingComplete: boolean = false;
+
+  // Track when processing is complete
+  $: if (progress === 1.0 && !isProcessing) {
+    processingComplete = true;
+  }
 
   async function handleCSVUpload(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -31,6 +38,7 @@
     try {
       const videoDuration = videoElement?.duration || 0;
       const result = await loadCSVFile(file, videoDuration);
+      csvFileName = file.name;
       onCSVUploaded(result);
       console.log('CSV uploaded successfully:', result);
     } catch (error) {
@@ -52,50 +60,65 @@
   <h3>Pose Detection</h3>
   
   <div class="controls">
-    {#if isProcessing}
-      <div class="processing-info">
-        <div class="progress-container">
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: {progress * 100}%"></div>
+    <div class="button-stack">
+      <!-- Top position: Start/Stop/Progress/Filename -->
+      <div class="top-slot">
+        {#if isProcessing}
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: {progress * 100}%"></div>
+            </div>
+            <span class="progress-text">{Math.round(progress * 100)}%</span>
           </div>
-          <span class="progress-text">{Math.round(progress * 100)}%</span>
-        </div>
-        <button on:click={onStopProcessing} class="control-btn stop-btn">
-          <i class="fas fa-stop"></i>
-          Stop Processing
-        </button>
+          <button on:click={onStopProcessing} class="control-btn stop-btn">
+            <i class="fas fa-stop"></i>
+            Stop Processing
+          </button>
+        {:else if csvFileName}
+          <div class="filename-display">
+            <i class="fas fa-file-csv"></i>
+            <span class="filename">{csvFileName}</span>
+          </div>
+        {:else}
+          <button 
+            on:click={onStartProcessing} 
+            class="control-btn start-btn"
+            class:disabled={!step2Enabled}
+            disabled={!step2Enabled}
+          >
+            <span class="step-number">②</span>
+            <i class="fas fa-play"></i>
+            Start Pose Detection
+          </button>
+        {/if}
       </div>
-    {:else if isUploadingCSV}
-      <div class="processing-info">
-        <div class="loading-message">
-          <i class="fas fa-spinner fa-spin"></i>
-          Loading CSV data...
-        </div>
+
+      <!-- Bottom position: Upload CSV/Complete message -->
+      <div class="bottom-slot">
+        {#if processingComplete && !csvFileName}
+          <div class="completion-message">
+            <i class="fas fa-check-circle"></i>
+            Pose detection completed!
+          </div>
+        {:else if isUploadingCSV}
+          <div class="loading-message">
+            <i class="fas fa-spinner fa-spin"></i>
+            Loading CSV data...
+          </div>
+        {:else}
+          <button 
+            on:click={triggerCSVUpload} 
+            class="control-btn upload-btn"
+            class:disabled={!step2Enabled}
+            disabled={!step2Enabled}
+          >
+            <span class="step-number">②</span>
+            <i class="fas fa-upload"></i>
+            Upload CSV Data
+          </button>
+        {/if}
       </div>
-    {:else}
-      <div class="button-group">
-        <button 
-          on:click={onStartProcessing} 
-          class="control-btn start-btn"
-          class:disabled={!step2Enabled}
-          disabled={!step2Enabled}
-        >
-          <span class="step-number">②</span>
-          <i class="fas fa-play"></i>
-          Start Pose Detection
-        </button>
-        <button 
-          on:click={triggerCSVUpload} 
-          class="control-btn upload-btn"
-          class:disabled={!step2Enabled}
-          disabled={!step2Enabled}
-        >
-          <span class="step-number">②</span>
-          <i class="fas fa-upload"></i>
-          Upload CSV Data
-        </button>
-      </div>
-    {/if}
+    </div>
   </div>
   
   <!-- Hidden file input for CSV upload -->
@@ -106,13 +129,6 @@
     on:change={handleCSVUpload}
     style="display: none;"
   />
-  
-  {#if progress > 0 && !isProcessing}
-    <div class="completion-message">
-      <i class="fas fa-check-circle"></i>
-      Pose detection completed!
-    </div>
-  {/if}
 </div>
 
 <style>
@@ -135,12 +151,19 @@
     gap: 15px;
   }
 
-
-  .processing-info {
+  .button-stack {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
+
+  .top-slot, .bottom-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 48px; /* Consistent height for buttons */
+  }
+
 
   .progress-container {
     display: flex;
@@ -217,11 +240,28 @@
     font-size: 16px;
   }
 
-  .button-group {
+  .filename-display {
     display: flex;
-    flex-direction: row;
-    gap: 15px;
     align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+  }
+
+  .filename-display i {
+    color: #007bff;
+  }
+
+  .filename {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .upload-btn {
