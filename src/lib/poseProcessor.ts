@@ -109,6 +109,8 @@ export class PoseProcessor {
     if (typeof window === 'undefined') return;
     
     try {
+      console.log('Initializing MediaPipe Pose...');
+      
       // Dynamic import to avoid SSR issues
       const { Pose } = await import('@mediapipe/pose');
       
@@ -126,6 +128,11 @@ export class PoseProcessor {
         minDetectionConfidence: 0.5,
         minTrackingConfidence: 0.5
       });
+      
+      // Wait for pose to initialize
+      await this.pose.initialize();
+      console.log('MediaPipe Pose initialized successfully');
+      
     } catch (error) {
       console.error('Failed to initialize MediaPipe Pose:', error);
       throw error;
@@ -158,33 +165,55 @@ export class PoseProcessor {
       };
     });
 
-    let processedFrames = 0;
+    console.log(`Starting MediaPipe processing: ${frameCount} frames at ${frameRate}fps`);
     
     return new Promise((resolve, reject) => {
+      let processedFrames = 0;
+      let currentFrameIndex = 0;
+      
+      const processNextFrameSequentially = async () => {
+        try {
+          if (currentFrameIndex >= frameCount || !this.isProcessing) {
+            // Processing complete
+            this.isProcessing = false;
+            const result: PoseProcessingResult = {
+              joints,
+              processingComplete: true,
+              progress: 1.0
+            };
+            console.log('MediaPipe processing complete:', result);
+            this.options.onComplete?.(result);
+            resolve(result);
+            return;
+          }
+          
+          // Process current frame
+          await this.processNextFrame(videoElement, frameRate, currentFrameIndex);
+          currentFrameIndex++;
+          
+        } catch (error) {
+          console.error('Error processing frame:', error);
+          this.isProcessing = false;
+          reject(error);
+        }
+      };
+      
       this.pose.onResults((results: Results) => {
-        this.processResults(results, joints, videoElement.currentTime);
+        const currentTime = currentFrameIndex / frameRate;
+        this.processResults(results, joints, currentTime);
         processedFrames++;
         
         const progress = processedFrames / frameCount;
         this.options.onProgress?.(progress);
         
-        if (processedFrames >= frameCount) {
-          this.isProcessing = false;
-          const result: PoseProcessingResult = {
-            joints,
-            processingComplete: true,
-            progress: 1.0
-          };
-          this.options.onComplete?.(result);
-          resolve(result);
-        } else {
-          // Process next frame
-          this.processNextFrame(videoElement, frameRate, processedFrames);
-        }
+        console.log(`Processed frame ${processedFrames}/${frameCount} (${(progress * 100).toFixed(1)}%)`);
+        
+        // Process next frame after this one is done
+        setTimeout(() => processNextFrameSequentially(), 10);
       });
 
       // Start processing
-      this.processNextFrame(videoElement, frameRate, 0);
+      processNextFrameSequentially();
     });
   }
 
@@ -218,7 +247,7 @@ export class PoseProcessor {
           const frameData: FrameData = {
             t: timestamp,
             x: landmark.x,
-            y: landmark.y,
+            y: 1 - landmark.y, // Flip Y coordinate to match CSV processing
             z: landmark.z
           };
           joints[jointName].frames.push(frameData);

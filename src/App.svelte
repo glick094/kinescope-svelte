@@ -113,36 +113,9 @@
   // Initialize pose data
   let poseData = new PoseData();
 
-  // Generate sample data
+  // Initialize with empty data - sample data removed to avoid interference with MediaPipe
   onMount(() => {
-    const positions = Array.from({ length: 100 }, (_, i) => ({
-      t: i-1,
-      x: .1 * Math.sin(i / 5) + .5 * Math.sin(i/12) + Math.sin(i/100),
-      y: .1 * Math.cos(i / 5) + .5 * Math.cos(i/12) + Math.cos(i/100),
-    }));
-    
-    const times = Array.from({ length: 100 }, (_, i) => i*2);
-
-    poseData.joints = { 
-      "right_hand": {
-        frames: times.map((_, index) => ({
-          t: positions[index].t,
-          x: positions[index].x,
-          y: positions[index].y,
-        })),
-        color: [255, 99, 132],
-        units: "px",
-      },
-      "left_hand": {
-        frames: times.map((_, index) => ({
-          t: positions[index].t,
-          x: -positions[index].x * .9,
-          y: positions[index].y * .7,
-        })),
-        color: [99, 255, 132],
-        units: "px",
-      }
-    };
+    poseData.joints = {};
   });
 
   function setSyncedTime(newTime: number): void {
@@ -171,11 +144,13 @@
           processingProgress = progress;
         },
         onComplete: (result: PoseProcessingResult) => {
+          console.log('MediaPipe processing completed, loading result:', result);
           poseData.LoadFromMediaPipeResult(result);
           isProcessingPose = false;
           processingProgress = 1.0;
           // Trigger reactivity
           poseData = poseData;
+          console.log('PoseData updated:', poseData);
         },
         onError: (error: string) => {
           console.error('Pose processing error:', error);
@@ -221,6 +196,7 @@
         onStartProcessing={startPoseProcessing}
         onStopProcessing={stopPoseProcessing}
         onCSVUploaded={handleCSVUpload}
+        {videoElement}
         videoLoaded={!!videoSrc}
       />
       <KeypointSelector poseData={poseData} setJointMask={setJointMaskHandler} step2Completed={processingProgress > 0 && !isProcessingPose}/>

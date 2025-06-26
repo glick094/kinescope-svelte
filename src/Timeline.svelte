@@ -93,16 +93,16 @@
 
     // Color-blind friendly palette (same as ScatterPlot)
     const colorPalette = [
-      '#d62728', // red
-      '#2ca02c', // green
-      '#1f77b4', // blue
-      '#ff7f0e', // orange
-      '#9467bd', // purple
-      '#8c564b', // brown
-      '#e377c2', // pink
-      '#7f7f7f', // gray
-      '#bcbd22', // olive
-      '#17becf'  // cyan
+      '#cc6677', // rose
+      '#332288', // indigo  
+      '#ddcc77', // khaki
+      '#117733', // forest green
+      '#88ccee', // sky blue
+      '#882255', // maroon
+      '#44aa99', // teal
+      '#999933', // olive green
+      '#aa4499', // violet
+      '#dddddd', // light gray
     ];
 
     const datasets = valid_joints.map((joint_name: string, index: number) => ({

@@ -175,7 +175,7 @@ export function parseCSVToPoseData(csvContent: string): PoseProcessingResult {
   };
 }
 
-export async function loadCSVFile(file: File): Promise<PoseProcessingResult> {
+export async function loadCSVFile(file: File, videoDuration?: number): Promise<PoseProcessingResult> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     
@@ -183,6 +183,16 @@ export async function loadCSVFile(file: File): Promise<PoseProcessingResult> {
       try {
         const csvContent = event.target?.result as string;
         const result = parseCSVToPoseData(csvContent);
+        
+        // Validate against video duration if provided
+        if (videoDuration && videoDuration > 0) {
+          const validation = validateCSVAgainstVideo(result, videoDuration);
+          if (!validation.isValid) {
+            console.warn('CSV validation warnings:', validation.warnings);
+            // Still resolve but log warnings
+          }
+        }
+        
         resolve(result);
       } catch (error) {
         reject(new Error(`Failed to parse CSV: ${error}`));
@@ -195,4 +205,57 @@ export async function loadCSVFile(file: File): Promise<PoseProcessingResult> {
     
     reader.readAsText(file);
   });
+}
+
+interface ValidationResult {
+  isValid: boolean;
+  warnings: string[];
+  csvDuration?: number;
+  videoDuration?: number;
+  frameCountMismatch?: boolean;
+}
+
+function validateCSVAgainstVideo(result: PoseProcessingResult, videoDuration: number): ValidationResult {
+  const warnings: string[] = [];
+  let isValid = true;
+  
+  // Get sample joint to check time range
+  const sampleJoint = Object.values(result.joints).find(joint => joint.frames.length > 0);
+  if (!sampleJoint) {
+    return { isValid: false, warnings: ['No valid pose data found in CSV'] };
+  }
+  
+  const frames = sampleJoint.frames;
+  const minTime = Math.min(...frames.map(f => f.t));
+  const maxTime = Math.max(...frames.map(f => f.t));
+  const csvDuration = maxTime - minTime;
+  
+  // Check if CSV duration is significantly different from video duration
+  const durationDifference = Math.abs(csvDuration - videoDuration);
+  const tolerancePercent = 0.1; // 10% tolerance
+  
+  if (durationDifference > videoDuration * tolerancePercent) {
+    warnings.push(
+      `Duration mismatch: CSV data spans ${csvDuration.toFixed(2)}s but video is ${videoDuration.toFixed(2)}s`
+    );
+    isValid = false;
+  }
+  
+  // Check if CSV starts significantly after video start
+  if (minTime > 0.5) {
+    warnings.push(`CSV data starts at ${minTime.toFixed(2)}s, not at video start (0s)`);
+  }
+  
+  // Check if CSV ends before video ends
+  if (maxTime < videoDuration - 0.5) {
+    warnings.push(`CSV data ends at ${maxTime.toFixed(2)}s but video ends at ${videoDuration.toFixed(2)}s`);
+  }
+  
+  return {
+    isValid,
+    warnings,
+    csvDuration,
+    videoDuration,
+    frameCountMismatch: durationDifference > videoDuration * tolerancePercent
+  };
 }

@@ -151,9 +151,9 @@
   }
 
   .step-number {
-    font-size: 16px;
+    font-size: 32px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.2); */
     border-radius: 50%;
     width: 24px;
     height: 24px;

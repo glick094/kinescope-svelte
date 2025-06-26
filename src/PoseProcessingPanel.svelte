@@ -8,6 +8,7 @@
   export let onStopProcessing: () => void;
   export let onCSVUploaded: (result: PoseProcessingResult) => void;
   export let videoLoaded: boolean;
+  export let videoElement: HTMLVideoElement | null = null;
 
   $: step2Enabled = videoLoaded;
 
@@ -28,7 +29,8 @@
     isUploadingCSV = true;
     
     try {
-      const result = await loadCSVFile(file);
+      const videoDuration = videoElement?.duration || 0;
+      const result = await loadCSVFile(file, videoDuration);
       onCSVUploaded(result);
       console.log('CSV uploaded successfully:', result);
     } catch (error) {
@@ -243,9 +245,9 @@
   }
 
   .step-number {
-    font-size: 16px;
+    font-size: 32px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.2); */
     border-radius: 50%;
     width: 24px;
     height: 24px;
