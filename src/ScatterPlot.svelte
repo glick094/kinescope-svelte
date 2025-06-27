@@ -30,6 +30,10 @@
   export let syncedTime: number;
   export let isLoading: boolean = false;
 
+  // Visibility filter
+  let visibilityThreshold: number = 0.5;
+  let showVisibilityFilter: boolean = false;
+
 
   let zoomLevel = 1;
   let panX = 0;
@@ -164,6 +168,74 @@
     chartInstance = new Chart(ctx, config);
   }
 
+  async function updateChartData(): Promise<void> {
+    if (!chartInstance || !poseData) return;
+
+    const valid_joints = Object.keys(jointMask).reduce((acc: string[], key: string) => {
+      if (jointMask[key].includes("x") && jointMask[key].includes("y")) {
+        acc.push(key);
+      }
+      return acc;
+    }, []);
+
+    let datasets = valid_joints.map((joint_name: string, index: number) => {
+      const jointData = poseData.GetJoint2D(joint_name);
+      
+      // Filter data based on visibility threshold
+      const filteredData = jointData.filter(point => {
+        const frameData = poseData.joints[joint_name].frames.find(frame => 
+          Math.abs(frame.t - point.t) < 0.033 // ~1 frame tolerance
+        );
+        const visibility = frameData?.visibility || 1.0;
+        return visibility >= visibilityThreshold;
+      });
+      
+      const baseColor = colorPalette[index % colorPalette.length];
+      const baseColorWithAlpha = baseColor.replace('#', '').match(/.{2}/g)?.map(x => parseInt(x, 16)).join(', ');
+      const rgbaBaseColor = `rgba(${baseColorWithAlpha}, 1)`;
+      
+      // Find current frame index in filtered data
+      const tolerance = 0.1;
+      const currentFrameIndex = filteredData.findIndex(point => Math.abs(point.t - syncedTime) < tolerance);
+      
+      return {
+        label: joint_name,
+        data: filteredData.map((point, frameIndex) => ({ 
+          x: point.x, 
+          y: point.y,
+          radius: getPointRadius(frameIndex, currentFrameIndex)
+        })),
+        backgroundColor: filteredData.map((_, frameIndex) => 
+          getTemporalColor(rgbaBaseColor, frameIndex, currentFrameIndex)
+        ),
+        borderColor: rgbaBaseColor,
+        borderWidth: 1,
+        showLine: false,
+        animation: {
+          duration: 0
+        }
+      };
+    });
+
+    if (datasets.length == 0) {
+      datasets = [{
+        label: "", 
+        data: [],
+        backgroundColor: [],
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0)',
+        showLine: false,
+        animation: {
+          duration: 0
+        }
+      }];
+    }
+
+    // Update chart data without destroying the chart
+    chartInstance.data.datasets = datasets;
+    chartInstance.update('none'); // 'none' prevents animation and preserves zoom
+  }
+
   async function createChart(): Promise<void> {
     if (!canvasElement) return;
 
@@ -190,22 +262,32 @@
 
     let datasets = valid_joints.map((joint_name: string, index: number) => {
       const jointData = poseData.GetJoint2D(joint_name);
+      
+      // Filter data based on visibility threshold
+      const filteredData = jointData.filter(point => {
+        const frameData = poseData.joints[joint_name].frames.find(frame => 
+          Math.abs(frame.t - point.t) < 0.033 // ~1 frame tolerance
+        );
+        const visibility = frameData?.visibility || 1.0;
+        return visibility >= visibilityThreshold;
+      });
+      
       const baseColor = colorPalette[index % colorPalette.length];
       const baseColorWithAlpha = baseColor.replace('#', '').match(/.{2}/g)?.map(x => parseInt(x, 16)).join(', ');
       const rgbaBaseColor = `rgba(${baseColorWithAlpha}, 1)`;
       
-      // Find current frame index
+      // Find current frame index in filtered data
       const tolerance = 0.1;
-      const currentFrameIndex = jointData.findIndex(point => Math.abs(point.t - syncedTime) < tolerance);
+      const currentFrameIndex = filteredData.findIndex(point => Math.abs(point.t - syncedTime) < tolerance);
       
       return {
         label: joint_name,
-        data: jointData.map((point, frameIndex) => ({ 
+        data: filteredData.map((point, frameIndex) => ({ 
           x: point.x, 
           y: point.y,
           radius: getPointRadius(frameIndex, currentFrameIndex)
         })),
-        backgroundColor: jointData.map((_, frameIndex) => 
+        backgroundColor: filteredData.map((_, frameIndex) => 
           getTemporalColor(rgbaBaseColor, frameIndex, currentFrameIndex)
         ),
         borderColor: rgbaBaseColor,
@@ -322,23 +404,60 @@
   $: jointCount = poseData ? Object.keys(poseData.joints).length : 0;
   $: selectedJointCount = Object.keys(jointMask).length;
   
-  $: if (canvasElement && (jointCount > 0 || selectedJointCount > 0 || syncedTime !== undefined)) {
+  // Create new chart when major changes occur (joint selection, pose data loading)
+  $: if (canvasElement && (jointCount > 0 || selectedJointCount > 0)) {
     createChart();
+  }
+  
+  // Update chart data only when time or visibility changes (preserves zoom)
+  $: if (chartInstance && poseData && (syncedTime !== undefined || visibilityThreshold !== undefined)) {
+    updateChartData();
   }
 </script>
 
 <div class="scatter-container">
-  <div class="zoom-controls">
-    <button on:click={zoomIn} class="zoom-btn" title="Zoom In" aria-label="Zoom In">
-      <i class="fas fa-search-plus"></i>
-    </button>
-    <button on:click={zoomOut} class="zoom-btn" title="Zoom Out" aria-label="Zoom Out">
-      <i class="fas fa-search-minus"></i>
-    </button>
-    <button on:click={resetZoom} class="zoom-btn" title="Reset Zoom" aria-label="Reset Zoom">
-      <i class="fas fa-expand-arrows-alt"></i>
-    </button>
+  <div class="chart-controls">
+    <div class="zoom-controls">
+      <button on:click={zoomIn} class="zoom-btn" title="Zoom In" aria-label="Zoom In">
+        <i class="fas fa-search-plus"></i>
+      </button>
+      <button on:click={zoomOut} class="zoom-btn" title="Zoom Out" aria-label="Zoom Out">
+        <i class="fas fa-search-minus"></i>
+      </button>
+      <button on:click={resetZoom} class="zoom-btn" title="Reset Zoom" aria-label="Reset Zoom">
+        <i class="fas fa-expand-arrows-alt"></i>
+      </button>
+    </div>
   </div>
+  
+  <div class="visibility-controls">
+    <button 
+      on:click={() => showVisibilityFilter = !showVisibilityFilter} 
+      class="visibility-btn {showVisibilityFilter ? 'active' : ''}" 
+      title="Toggle Visibility Filter" 
+      aria-label="Toggle Visibility Filter"
+    >
+      <i class="fas fa-eye"></i>
+    </button>
+    
+    {#if showVisibilityFilter}
+      <div class="visibility-slider-container">
+        <label for="visibility-slider" class="slider-label">
+          Min Visibility: {visibilityThreshold.toFixed(2)}
+        </label>
+        <input 
+          id="visibility-slider"
+          type="range" 
+          min="0" 
+          max="1" 
+          step="0.05" 
+          bind:value={visibilityThreshold}
+          class="visibility-slider"
+        />
+      </div>
+    {/if}
+  </div>
+  
   <canvas bind:this={canvasElement}></canvas>
   
   {#if isLoading}
@@ -358,7 +477,7 @@
     height: 100%;
   }
 
-  .zoom-controls {
+  .chart-controls {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -368,7 +487,13 @@
     z-index: 10;
   }
 
-  .zoom-btn {
+  .zoom-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .zoom-btn, .visibility-btn {
     width: 32px;
     height: 32px;
     border: none;
@@ -383,13 +508,76 @@
     transition: all 0.2s ease;
   }
 
-  .zoom-btn:hover {
+  .zoom-btn:hover, .visibility-btn:hover {
     background: rgba(255, 255, 255, 1);
     transform: scale(1.1);
   }
 
-  .zoom-btn:active {
+  .zoom-btn:active, .visibility-btn:active {
     transform: scale(0.95);
+  }
+
+  .visibility-btn.active {
+    background: #3498db;
+    color: white;
+  }
+
+  .visibility-controls {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+    z-index: 10;
+  }
+
+  .visibility-slider-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+  }
+
+  .slider-label {
+    display: block;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .visibility-slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: #ddd;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .visibility-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .visibility-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .loading-overlay {

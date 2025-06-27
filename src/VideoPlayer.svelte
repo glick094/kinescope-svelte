@@ -6,6 +6,7 @@
     x: number;
     y: number;
     z?: number;
+    visibility?: number;
   }
 
   interface JointData {
@@ -59,9 +60,9 @@
     const paletteColor = colorPalette[jointIndex % colorPalette.length];
     // Convert hex to RGB
     const hex = paletteColor.replace('#', '');
-    const r = parseInt(hex.substr(0, 2), 16);
-    const g = parseInt(hex.substr(2, 2), 16);
-    const b = parseInt(hex.substr(4, 2), 16);
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
     
     return [r, g, b];
   }
@@ -337,7 +338,6 @@
       ['right_knee', 'right_ankle']
     ];
     
-    overlayCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
     overlayCtx.lineWidth = 3;
     
     connections.forEach(([joint1, joint2]) => {
@@ -350,6 +350,21 @@
         const y1 = videoDimensions.offsetY + ((1 - frame1.y) * videoDimensions.displayHeight);
         const x2 = videoDimensions.offsetX + (frame2.x * videoDimensions.displayWidth);
         const y2 = videoDimensions.offsetY + ((1 - frame2.y) * videoDimensions.displayHeight);
+        
+        // Create gradient based on visibility values
+        const visibility1 = frame1.visibility || 1.0;
+        const visibility2 = frame2.visibility || 1.0;
+        const avgVisibility = (visibility1 + visibility2) / 2;
+        
+        // Create linear gradient from point 1 to point 2
+        const gradient = overlayCtx.createLinearGradient(x1, y1, x2, y2);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${visibility1 * 0.9})`);
+        gradient.addColorStop(1, `rgba(255, 255, 255, ${visibility2 * 0.9})`);
+        
+        overlayCtx.strokeStyle = gradient;
+        
+        // Also vary line width based on average visibility
+        overlayCtx.lineWidth = Math.max(1, 4 * avgVisibility);
         
         overlayCtx.beginPath();
         overlayCtx.moveTo(x1, y1);
