@@ -1,1653 +1,533 @@
 [vite] connecting... client:495:9
 [vite] connected. client:618:15
 Initializing MediaPipe Pose... poseProcessor.ts:86:15
-MediaPipe Pose initialized successfully poseProcessor.ts:102:15
-Video readyState: 4, duration: 8.335963 poseProcessor.ts:131:13
-Video dimensions: 720x1280 poseProcessor.ts:132:13
-Starting MediaPipe processing: 250 frames at 30fps poseProcessor.ts:145:13
-I0000 00:00:1750993135.435000       1 gl_context_webgl.cc:151] Successfully created a WebGL context with major version 3 and handle 3 client.js:3019:15
-I0000 00:00:1750993135.450000       1 gl_context.cc:359] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0)) client.js:3019:15
-W0000 00:00:1750993135.450000       1 gl_context.cc:1000] OpenGL error checking is disabled client.js:3019:15
-Processed frame 1/250 (0.4%) poseProcessor.ts:177:17
+MediaPipe Pose initialized successfully poseProcessor.ts:104:15
+Video readyState: 4, duration: 8.335963 poseProcessor.ts:133:13
+Video dimensions: 720x1280 poseProcessor.ts:134:13
+Starting MediaPipe processing: 250 frames at 30fps poseProcessor.ts:151:13
+Processing frame 1/250 (0.4%) poseProcessor.ts:158:17
+I0000 00:00:1751036271.820000       1 gl_context_webgl.cc:151] Successfully created a WebGL context with major version 3 and handle 3 client.js:3019:15
+I0000 00:00:1751036271.826000       1 gl_context.cc:359] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0)) client.js:3019:15
+W0000 00:00:1751036271.826000       1 gl_context.cc:1000] OpenGL error checking is disabled client.js:3019:15
+Processing frame 2/250 (0.8%) poseProcessor.ts:158:17
 WebGL warning: drawArraysInstanced: Tex image TEXTURE_2D level 0 is incurring lazy initialization. 2
-Processed frame 2/250 (0.8%) poseProcessor.ts:177:17
-Processed frame 3/250 (1.2%) poseProcessor.ts:177:17
-Processed frame 4/250 (1.6%) poseProcessor.ts:177:17
-Processed frame 5/250 (2.0%) poseProcessor.ts:177:17
-Processed frame 6/250 (2.4%) poseProcessor.ts:177:17
-Processed frame 7/250 (2.8%) poseProcessor.ts:177:17
-Processed frame 8/250 (3.2%) poseProcessor.ts:177:17
-Processed frame 9/250 (3.6%) poseProcessor.ts:177:17
-Processed frame 10/250 (4.0%) poseProcessor.ts:177:17
-Processed frame 11/250 (4.4%) poseProcessor.ts:177:17
-Processed frame 12/250 (4.8%) poseProcessor.ts:177:17
-Processed frame 13/250 (5.2%) poseProcessor.ts:177:17
-Processed frame 14/250 (5.6%) poseProcessor.ts:177:17
-Processed frame 15/250 (6.0%) poseProcessor.ts:177:17
-Processed frame 16/250 (6.4%) poseProcessor.ts:177:17
-Processed frame 17/250 (6.8%) poseProcessor.ts:177:17
-Processed frame 18/250 (7.2%) poseProcessor.ts:177:17
-Processed frame 19/250 (7.6%) poseProcessor.ts:177:17
-Processed frame 20/250 (8.0%) poseProcessor.ts:177:17
-Processed frame 21/250 (8.4%) poseProcessor.ts:177:17
-Processed frame 22/250 (8.8%) poseProcessor.ts:177:17
-Processed frame 23/250 (9.2%) poseProcessor.ts:177:17
-Processed frame 24/250 (9.6%) poseProcessor.ts:177:17
-Processed frame 25/250 (10.0%) poseProcessor.ts:177:17
-Processed frame 26/250 (10.4%) poseProcessor.ts:177:17
-Processed frame 27/250 (10.8%) poseProcessor.ts:177:17
-Processed frame 28/250 (11.2%) poseProcessor.ts:177:17
-Processed frame 29/250 (11.6%) poseProcessor.ts:177:17
-Processed frame 30/250 (12.0%) poseProcessor.ts:177:17
-Processed frame 31/250 (12.4%) poseProcessor.ts:177:17
-Processed frame 32/250 (12.8%) poseProcessor.ts:177:17
-Processed frame 33/250 (13.2%) poseProcessor.ts:177:17
-Processed frame 34/250 (13.6%) poseProcessor.ts:177:17
-Processed frame 35/250 (14.0%) poseProcessor.ts:177:17
-Processed frame 36/250 (14.4%) poseProcessor.ts:177:17
-Processed frame 37/250 (14.8%) poseProcessor.ts:177:17
-Processed frame 38/250 (15.2%) poseProcessor.ts:177:17
-Processed frame 39/250 (15.6%) poseProcessor.ts:177:17
-Processed frame 40/250 (16.0%) poseProcessor.ts:177:17
-Processed frame 41/250 (16.4%) poseProcessor.ts:177:17
-Processed frame 42/250 (16.8%) poseProcessor.ts:177:17
-Processed frame 43/250 (17.2%) poseProcessor.ts:177:17
-Processed frame 44/250 (17.6%) poseProcessor.ts:177:17
-Processed frame 45/250 (18.0%) poseProcessor.ts:177:17
-Processed frame 46/250 (18.4%) poseProcessor.ts:177:17
-Processed frame 47/250 (18.8%) poseProcessor.ts:177:17
-Processed frame 48/250 (19.2%) poseProcessor.ts:177:17
-Processed frame 49/250 (19.6%) poseProcessor.ts:177:17
-Processed frame 50/250 (20.0%) poseProcessor.ts:177:17
-Processed frame 51/250 (20.4%) poseProcessor.ts:177:17
-Processed frame 52/250 (20.8%) poseProcessor.ts:177:17
-Processed frame 53/250 (21.2%) poseProcessor.ts:177:17
-Processed frame 54/250 (21.6%) poseProcessor.ts:177:17
-Processed frame 55/250 (22.0%) poseProcessor.ts:177:17
-Processed frame 56/250 (22.4%) poseProcessor.ts:177:17
-Processed frame 57/250 (22.8%) poseProcessor.ts:177:17
-Processed frame 58/250 (23.2%) poseProcessor.ts:177:17
-Processed frame 59/250 (23.6%) poseProcessor.ts:177:17
-Processed frame 60/250 (24.0%) poseProcessor.ts:177:17
-Processed frame 61/250 (24.4%) poseProcessor.ts:177:17
-Processed frame 62/250 (24.8%) poseProcessor.ts:177:17
-Processed frame 63/250 (25.2%) poseProcessor.ts:177:17
-Processed frame 64/250 (25.6%) poseProcessor.ts:177:17
-Processed frame 65/250 (26.0%) poseProcessor.ts:177:17
-Processed frame 66/250 (26.4%) poseProcessor.ts:177:17
-Processed frame 67/250 (26.8%) poseProcessor.ts:177:17
-Processed frame 68/250 (27.2%) poseProcessor.ts:177:17
-Processed frame 69/250 (27.6%) poseProcessor.ts:177:17
-Processed frame 70/250 (28.0%) poseProcessor.ts:177:17
-Processed frame 71/250 (28.4%) poseProcessor.ts:177:17
-Processed frame 72/250 (28.8%) poseProcessor.ts:177:17
-Processed frame 73/250 (29.2%) poseProcessor.ts:177:17
-Processed frame 74/250 (29.6%) poseProcessor.ts:177:17
-Processed frame 75/250 (30.0%) poseProcessor.ts:177:17
-Processed frame 76/250 (30.4%) poseProcessor.ts:177:17
-Processed frame 77/250 (30.8%) poseProcessor.ts:177:17
-Processed frame 78/250 (31.2%) poseProcessor.ts:177:17
-Processed frame 79/250 (31.6%) poseProcessor.ts:177:17
-Processed frame 80/250 (32.0%) poseProcessor.ts:177:17
-Processed frame 81/250 (32.4%) poseProcessor.ts:177:17
-Processed frame 82/250 (32.8%) poseProcessor.ts:177:17
-Processed frame 83/250 (33.2%) poseProcessor.ts:177:17
-Processed frame 84/250 (33.6%) poseProcessor.ts:177:17
-Processed frame 85/250 (34.0%) poseProcessor.ts:177:17
-Processed frame 86/250 (34.4%) poseProcessor.ts:177:17
-Processed frame 87/250 (34.8%) poseProcessor.ts:177:17
-Processed frame 88/250 (35.2%) poseProcessor.ts:177:17
-Processed frame 89/250 (35.6%) poseProcessor.ts:177:17
-Processed frame 90/250 (36.0%) poseProcessor.ts:177:17
-Processed frame 91/250 (36.4%) poseProcessor.ts:177:17
-Processed frame 92/250 (36.8%) poseProcessor.ts:177:17
-Processed frame 93/250 (37.2%) poseProcessor.ts:177:17
-Processed frame 94/250 (37.6%) poseProcessor.ts:177:17
-Processed frame 95/250 (38.0%) poseProcessor.ts:177:17
-Processed frame 96/250 (38.4%) poseProcessor.ts:177:17
-Processed frame 97/250 (38.8%) poseProcessor.ts:177:17
-Processed frame 98/250 (39.2%) poseProcessor.ts:177:17
-Processed frame 99/250 (39.6%) poseProcessor.ts:177:17
-Processed frame 100/250 (40.0%) poseProcessor.ts:177:17
-Processed frame 101/250 (40.4%) poseProcessor.ts:177:17
-Processed frame 102/250 (40.8%) poseProcessor.ts:177:17
-Processed frame 103/250 (41.2%) poseProcessor.ts:177:17
-Processed frame 104/250 (41.6%) poseProcessor.ts:177:17
-Processed frame 105/250 (42.0%) poseProcessor.ts:177:17
-Processed frame 106/250 (42.4%) poseProcessor.ts:177:17
-Processed frame 107/250 (42.8%) poseProcessor.ts:177:17
-Processed frame 108/250 (43.2%) poseProcessor.ts:177:17
-Processed frame 109/250 (43.6%) poseProcessor.ts:177:17
-Processed frame 110/250 (44.0%) poseProcessor.ts:177:17
-Processed frame 111/250 (44.4%) poseProcessor.ts:177:17
-Processed frame 112/250 (44.8%) poseProcessor.ts:177:17
-Processed frame 113/250 (45.2%) poseProcessor.ts:177:17
-Processed frame 114/250 (45.6%) poseProcessor.ts:177:17
-Processed frame 115/250 (46.0%) poseProcessor.ts:177:17
-Processed frame 116/250 (46.4%) poseProcessor.ts:177:17
-Processed frame 117/250 (46.8%) poseProcessor.ts:177:17
-Processed frame 118/250 (47.2%) poseProcessor.ts:177:17
-Processed frame 119/250 (47.6%) poseProcessor.ts:177:17
-Processed frame 120/250 (48.0%) poseProcessor.ts:177:17
-Processed frame 121/250 (48.4%) poseProcessor.ts:177:17
-Processed frame 122/250 (48.8%) poseProcessor.ts:177:17
-Processed frame 123/250 (49.2%) poseProcessor.ts:177:17
-Processed frame 124/250 (49.6%) poseProcessor.ts:177:17
-Processed frame 125/250 (50.0%) poseProcessor.ts:177:17
-Processed frame 126/250 (50.4%) poseProcessor.ts:177:17
-Processed frame 127/250 (50.8%) poseProcessor.ts:177:17
-Processed frame 128/250 (51.2%) poseProcessor.ts:177:17
-Processed frame 129/250 (51.6%) poseProcessor.ts:177:17
-Processed frame 130/250 (52.0%) poseProcessor.ts:177:17
-Processed frame 131/250 (52.4%) poseProcessor.ts:177:17
-Processed frame 132/250 (52.8%) poseProcessor.ts:177:17
-Processed frame 133/250 (53.2%) poseProcessor.ts:177:17
-Processed frame 134/250 (53.6%) poseProcessor.ts:177:17
-Processed frame 135/250 (54.0%) poseProcessor.ts:177:17
-Processed frame 136/250 (54.4%) poseProcessor.ts:177:17
-Processed frame 137/250 (54.8%) poseProcessor.ts:177:17
-Processed frame 138/250 (55.2%) poseProcessor.ts:177:17
-Processed frame 139/250 (55.6%) poseProcessor.ts:177:17
-Processed frame 140/250 (56.0%) poseProcessor.ts:177:17
-Processed frame 141/250 (56.4%) poseProcessor.ts:177:17
-Processed frame 142/250 (56.8%) poseProcessor.ts:177:17
-Processed frame 143/250 (57.2%) poseProcessor.ts:177:17
-Processed frame 144/250 (57.6%) poseProcessor.ts:177:17
-Processed frame 145/250 (58.0%) poseProcessor.ts:177:17
-Processed frame 146/250 (58.4%) poseProcessor.ts:177:17
-Processed frame 147/250 (58.8%) poseProcessor.ts:177:17
-Processed frame 148/250 (59.2%) poseProcessor.ts:177:17
-Processed frame 149/250 (59.6%) poseProcessor.ts:177:17
-Processed frame 150/250 (60.0%) poseProcessor.ts:177:17
-Processed frame 151/250 (60.4%) poseProcessor.ts:177:17
-Processed frame 152/250 (60.8%) poseProcessor.ts:177:17
-Processed frame 153/250 (61.2%) poseProcessor.ts:177:17
-Processed frame 154/250 (61.6%) poseProcessor.ts:177:17
-Processed frame 155/250 (62.0%) poseProcessor.ts:177:17
-Processed frame 156/250 (62.4%) poseProcessor.ts:177:17
-Processed frame 157/250 (62.8%) poseProcessor.ts:177:17
-Processed frame 158/250 (63.2%) poseProcessor.ts:177:17
-Processed frame 159/250 (63.6%) poseProcessor.ts:177:17
-Processed frame 160/250 (64.0%) poseProcessor.ts:177:17
-Processed frame 161/250 (64.4%) poseProcessor.ts:177:17
-Processed frame 162/250 (64.8%) poseProcessor.ts:177:17
-Processed frame 163/250 (65.2%) poseProcessor.ts:177:17
-Processed frame 164/250 (65.6%) poseProcessor.ts:177:17
-Processed frame 165/250 (66.0%) poseProcessor.ts:177:17
-Processed frame 166/250 (66.4%) poseProcessor.ts:177:17
-Processed frame 167/250 (66.8%) poseProcessor.ts:177:17
-Processed frame 168/250 (67.2%) poseProcessor.ts:177:17
-Processed frame 169/250 (67.6%) poseProcessor.ts:177:17
-Processed frame 170/250 (68.0%) poseProcessor.ts:177:17
-Processed frame 171/250 (68.4%) poseProcessor.ts:177:17
-Processed frame 172/250 (68.8%) poseProcessor.ts:177:17
-Processed frame 173/250 (69.2%) poseProcessor.ts:177:17
-Processed frame 174/250 (69.6%) poseProcessor.ts:177:17
-Processed frame 175/250 (70.0%) poseProcessor.ts:177:17
-Processed frame 176/250 (70.4%) poseProcessor.ts:177:17
-Processed frame 177/250 (70.8%) poseProcessor.ts:177:17
-Processed frame 178/250 (71.2%) poseProcessor.ts:177:17
-Processed frame 179/250 (71.6%) poseProcessor.ts:177:17
-Processed frame 180/250 (72.0%) poseProcessor.ts:177:17
-Processed frame 181/250 (72.4%) poseProcessor.ts:177:17
-Processed frame 182/250 (72.8%) poseProcessor.ts:177:17
-Processed frame 183/250 (73.2%) poseProcessor.ts:177:17
-Processed frame 184/250 (73.6%) poseProcessor.ts:177:17
-Processed frame 185/250 (74.0%) poseProcessor.ts:177:17
-Processed frame 186/250 (74.4%) poseProcessor.ts:177:17
-Processed frame 187/250 (74.8%) poseProcessor.ts:177:17
-Processed frame 188/250 (75.2%) poseProcessor.ts:177:17
-Processed frame 189/250 (75.6%) poseProcessor.ts:177:17
-Processed frame 190/250 (76.0%) poseProcessor.ts:177:17
-Processed frame 191/250 (76.4%) poseProcessor.ts:177:17
-Processed frame 192/250 (76.8%) poseProcessor.ts:177:17
-Processed frame 193/250 (77.2%) poseProcessor.ts:177:17
-Processed frame 194/250 (77.6%) poseProcessor.ts:177:17
-Processed frame 195/250 (78.0%) poseProcessor.ts:177:17
-Processed frame 196/250 (78.4%) poseProcessor.ts:177:17
-Processed frame 197/250 (78.8%) poseProcessor.ts:177:17
-Processed frame 198/250 (79.2%) poseProcessor.ts:177:17
-Processed frame 199/250 (79.6%) poseProcessor.ts:177:17
-Processed frame 200/250 (80.0%) poseProcessor.ts:177:17
-Processed frame 201/250 (80.4%) poseProcessor.ts:177:17
-Processed frame 202/250 (80.8%) poseProcessor.ts:177:17
-Processed frame 203/250 (81.2%) poseProcessor.ts:177:17
-Processed frame 204/250 (81.6%) poseProcessor.ts:177:17
-Processed frame 205/250 (82.0%) poseProcessor.ts:177:17
-Processed frame 206/250 (82.4%) poseProcessor.ts:177:17
-Processed frame 207/250 (82.8%) poseProcessor.ts:177:17
-Processed frame 208/250 (83.2%) poseProcessor.ts:177:17
-Processed frame 209/250 (83.6%) poseProcessor.ts:177:17
-Processed frame 210/250 (84.0%) poseProcessor.ts:177:17
-Processed frame 211/250 (84.4%) poseProcessor.ts:177:17
-Processed frame 212/250 (84.8%) poseProcessor.ts:177:17
-Processed frame 213/250 (85.2%) poseProcessor.ts:177:17
-Processed frame 214/250 (85.6%) poseProcessor.ts:177:17
-Processed frame 215/250 (86.0%) poseProcessor.ts:177:17
-Processed frame 216/250 (86.4%) poseProcessor.ts:177:17
-Processed frame 217/250 (86.8%) poseProcessor.ts:177:17
-Processed frame 218/250 (87.2%) poseProcessor.ts:177:17
-Processed frame 219/250 (87.6%) poseProcessor.ts:177:17
-Processed frame 220/250 (88.0%) poseProcessor.ts:177:17
-Processed frame 221/250 (88.4%) poseProcessor.ts:177:17
-Processed frame 222/250 (88.8%) poseProcessor.ts:177:17
-Processed frame 223/250 (89.2%) poseProcessor.ts:177:17
-Processed frame 224/250 (89.6%) poseProcessor.ts:177:17
-Processed frame 225/250 (90.0%) poseProcessor.ts:177:17
-Processed frame 226/250 (90.4%) poseProcessor.ts:177:17
-Processed frame 227/250 (90.8%) poseProcessor.ts:177:17
-Processed frame 228/250 (91.2%) poseProcessor.ts:177:17
-Processed frame 229/250 (91.6%) poseProcessor.ts:177:17
-Processed frame 230/250 (92.0%) poseProcessor.ts:177:17
-Processed frame 231/250 (92.4%) poseProcessor.ts:177:17
-Processed frame 232/250 (92.8%) poseProcessor.ts:177:17
-Processed frame 233/250 (93.2%) poseProcessor.ts:177:17
-Processed frame 234/250 (93.6%) poseProcessor.ts:177:17
-Processed frame 235/250 (94.0%) poseProcessor.ts:177:17
-Processed frame 236/250 (94.4%) poseProcessor.ts:177:17
-Processed frame 237/250 (94.8%) poseProcessor.ts:177:17
-Processed frame 238/250 (95.2%) poseProcessor.ts:177:17
-Processed frame 239/250 (95.6%) poseProcessor.ts:177:17
-Processed frame 240/250 (96.0%) poseProcessor.ts:177:17
-Processed frame 241/250 (96.4%) poseProcessor.ts:177:17
-Processed frame 242/250 (96.8%) poseProcessor.ts:177:17
-Processed frame 243/250 (97.2%) poseProcessor.ts:177:17
-Processed frame 244/250 (97.6%) poseProcessor.ts:177:17
-Processed frame 245/250 (98.0%) poseProcessor.ts:177:17
-Processed frame 246/250 (98.4%) poseProcessor.ts:177:17
-Processed frame 247/250 (98.8%) poseProcessor.ts:177:17
-Processed frame 248/250 (99.2%) poseProcessor.ts:177:17
-Processed frame 249/250 (99.6%) poseProcessor.ts:177:17
-Processed frame 250/250 (100.0%) poseProcessor.ts:177:17
-Processed frame 251/250 (100.4%) poseProcessor.ts:177:17
-Processed frame 252/250 (100.8%) poseProcessor.ts:177:17
-Processed frame 253/250 (101.2%) poseProcessor.ts:177:17
-Processed frame 254/250 (101.6%) poseProcessor.ts:177:17
-Processed frame 255/250 (102.0%) poseProcessor.ts:177:17
-Processed frame 256/250 (102.4%) poseProcessor.ts:177:17
-Processed frame 257/250 (102.8%) poseProcessor.ts:177:17
-Processed frame 258/250 (103.2%) poseProcessor.ts:177:17
-Processed frame 259/250 (103.6%) poseProcessor.ts:177:17
-Processed frame 260/250 (104.0%) poseProcessor.ts:177:17
-Processed frame 261/250 (104.4%) poseProcessor.ts:177:17
-Processed frame 262/250 (104.8%) poseProcessor.ts:177:17
-Processed frame 263/250 (105.2%) poseProcessor.ts:177:17
-Processed frame 264/250 (105.6%) poseProcessor.ts:177:17
-Processed frame 265/250 (106.0%) poseProcessor.ts:177:17
-Processed frame 266/250 (106.4%) poseProcessor.ts:177:17
-Processed frame 267/250 (106.8%) poseProcessor.ts:177:17
-Processed frame 268/250 (107.2%) poseProcessor.ts:177:17
-Processed frame 269/250 (107.6%) poseProcessor.ts:177:17
-Processed frame 270/250 (108.0%) poseProcessor.ts:177:17
-Processed frame 271/250 (108.4%) poseProcessor.ts:177:17
-Processed frame 272/250 (108.8%) poseProcessor.ts:177:17
-Processed frame 273/250 (109.2%) poseProcessor.ts:177:17
-Processed frame 274/250 (109.6%) poseProcessor.ts:177:17
-Processed frame 275/250 (110.0%) poseProcessor.ts:177:17
-Processed frame 276/250 (110.4%) poseProcessor.ts:177:17
-Processed frame 277/250 (110.8%) poseProcessor.ts:177:17
-Processed frame 278/250 (111.2%) poseProcessor.ts:177:17
-Processed frame 279/250 (111.6%) poseProcessor.ts:177:17
-Processed frame 280/250 (112.0%) poseProcessor.ts:177:17
-Processed frame 281/250 (112.4%) poseProcessor.ts:177:17
-Processed frame 282/250 (112.8%) poseProcessor.ts:177:17
-Processed frame 283/250 (113.2%) poseProcessor.ts:177:17
-Processed frame 284/250 (113.6%) poseProcessor.ts:177:17
-Processed frame 285/250 (114.0%) poseProcessor.ts:177:17
-Processed frame 286/250 (114.4%) poseProcessor.ts:177:17
-Processed frame 287/250 (114.8%) poseProcessor.ts:177:17
-Processed frame 288/250 (115.2%) poseProcessor.ts:177:17
-Processed frame 289/250 (115.6%) poseProcessor.ts:177:17
-Processed frame 290/250 (116.0%) poseProcessor.ts:177:17
-Processed frame 291/250 (116.4%) poseProcessor.ts:177:17
-Processed frame 292/250 (116.8%) poseProcessor.ts:177:17
-Processed frame 293/250 (117.2%) poseProcessor.ts:177:17
-Processed frame 294/250 (117.6%) poseProcessor.ts:177:17
-Processed frame 295/250 (118.0%) poseProcessor.ts:177:17
-Processed frame 296/250 (118.4%) poseProcessor.ts:177:17
-Processed frame 297/250 (118.8%) poseProcessor.ts:177:17
-Processed frame 298/250 (119.2%) poseProcessor.ts:177:17
-Processed frame 299/250 (119.6%) poseProcessor.ts:177:17
-Processed frame 300/250 (120.0%) poseProcessor.ts:177:17
-Processed frame 301/250 (120.4%) poseProcessor.ts:177:17
-Processed frame 302/250 (120.8%) poseProcessor.ts:177:17
-Processed frame 303/250 (121.2%) poseProcessor.ts:177:17
-Processed frame 304/250 (121.6%) poseProcessor.ts:177:17
-Processed frame 305/250 (122.0%) poseProcessor.ts:177:17
-Processed frame 306/250 (122.4%) poseProcessor.ts:177:17
-Processed frame 307/250 (122.8%) poseProcessor.ts:177:17
-Processed frame 308/250 (123.2%) poseProcessor.ts:177:17
-Processed frame 309/250 (123.6%) poseProcessor.ts:177:17
-Processed frame 310/250 (124.0%) poseProcessor.ts:177:17
-Processed frame 311/250 (124.4%) poseProcessor.ts:177:17
-Processed frame 312/250 (124.8%) poseProcessor.ts:177:17
-Processed frame 313/250 (125.2%) poseProcessor.ts:177:17
-Processed frame 314/250 (125.6%) poseProcessor.ts:177:17
-Processed frame 315/250 (126.0%) poseProcessor.ts:177:17
+Processing frame 3/250 (1.2%) poseProcessor.ts:158:17
+Processing frame 4/250 (1.6%) poseProcessor.ts:158:17
+Processing frame 5/250 (2.0%) poseProcessor.ts:158:17
+Processing frame 6/250 (2.4%) poseProcessor.ts:158:17
+Processing frame 7/250 (2.8%) poseProcessor.ts:158:17
+Processing frame 8/250 (3.2%) poseProcessor.ts:158:17
+Seek timeout to 0.033s, continuing anyway client.js:3019:15
+Processing frame 9/250 (3.6%) poseProcessor.ts:158:17
+Seek timeout to 0.067s, continuing anyway client.js:3019:15
+Processing frame 10/250 (4.0%) poseProcessor.ts:158:17
+Seek timeout to 0.100s, continuing anyway client.js:3019:15
+Processing frame 11/250 (4.4%) poseProcessor.ts:158:17
+Seek timeout to 0.133s, continuing anyway client.js:3019:15
+Processing frame 12/250 (4.8%) poseProcessor.ts:158:17
+Seek timeout to 0.167s, continuing anyway client.js:3019:15
+Processing frame 13/250 (5.2%) poseProcessor.ts:158:17
+Seek timeout to 0.200s, continuing anyway client.js:3019:15
+Processing frame 14/250 (5.6%) poseProcessor.ts:158:17
+Seek timeout to 0.233s, continuing anyway client.js:3019:15
+Processing frame 15/250 (6.0%) poseProcessor.ts:158:17
+Seek timeout to 0.267s, continuing anyway client.js:3019:15
+Processing frame 16/250 (6.4%) poseProcessor.ts:158:17
+Seek timeout to 0.300s, continuing anyway client.js:3019:15
+Processing frame 17/250 (6.8%) poseProcessor.ts:158:17
+Seek timeout to 0.333s, continuing anyway client.js:3019:15
+Processing frame 18/250 (7.2%) poseProcessor.ts:158:17
+Seek timeout to 0.367s, continuing anyway client.js:3019:15
+Processing frame 19/250 (7.6%) poseProcessor.ts:158:17
+Seek timeout to 0.400s, continuing anyway client.js:3019:15
+Processing frame 20/250 (8.0%) poseProcessor.ts:158:17
+Seek timeout to 0.433s, continuing anyway client.js:3019:15
+Processing frame 21/250 (8.4%) poseProcessor.ts:158:17
+Seek timeout to 0.467s, continuing anyway client.js:3019:15
+Processing frame 22/250 (8.8%) poseProcessor.ts:158:17
+Seek timeout to 0.500s, continuing anyway client.js:3019:15
+Processing frame 23/250 (9.2%) poseProcessor.ts:158:17
+Seek timeout to 0.533s, continuing anyway client.js:3019:15
+Processing frame 24/250 (9.6%) poseProcessor.ts:158:17
+Seek timeout to 0.567s, continuing anyway client.js:3019:15
+Seek timeout to 0.600s, continuing anyway client.js:3019:15
+Processing frame 25/250 (10.0%) poseProcessor.ts:158:17
+Seek timeout to 0.633s, continuing anyway client.js:3019:15
+Processing frame 26/250 (10.4%) poseProcessor.ts:158:17
+Seek timeout to 0.667s, continuing anyway client.js:3019:15
+Processing frame 27/250 (10.8%) poseProcessor.ts:158:17
+Seek timeout to 0.700s, continuing anyway client.js:3019:15
+Processing frame 28/250 (11.2%) poseProcessor.ts:158:17
+Seek timeout to 0.733s, continuing anyway client.js:3019:15
+Processing frame 29/250 (11.6%) poseProcessor.ts:158:17
+Seek timeout to 0.767s, continuing anyway client.js:3019:15
+Processing frame 30/250 (12.0%) poseProcessor.ts:158:17
+Seek timeout to 0.800s, continuing anyway client.js:3019:15
+Processing frame 31/250 (12.4%) poseProcessor.ts:158:17
+Seek timeout to 0.833s, continuing anyway client.js:3019:15
+Processing frame 32/250 (12.8%) poseProcessor.ts:158:17
+Seek timeout to 0.867s, continuing anyway client.js:3019:15
+Processing frame 33/250 (13.2%) poseProcessor.ts:158:17
+Seek timeout to 0.900s, continuing anyway client.js:3019:15
+Processing frame 34/250 (13.6%) poseProcessor.ts:158:17
+Seek timeout to 0.933s, continuing anyway client.js:3019:15
+Processing frame 35/250 (14.0%) poseProcessor.ts:158:17
+Seek timeout to 0.967s, continuing anyway client.js:3019:15
+Processing frame 36/250 (14.4%) poseProcessor.ts:158:17
+Seek timeout to 1.000s, continuing anyway client.js:3019:15
+Seek timeout to 1.033s, continuing anyway client.js:3019:15
+Processing frame 37/250 (14.8%) poseProcessor.ts:158:17
+Seek timeout to 1.067s, continuing anyway client.js:3019:15
+Processing frame 38/250 (15.2%) poseProcessor.ts:158:17
+Seek timeout to 1.100s, continuing anyway client.js:3019:15
+Processing frame 39/250 (15.6%) poseProcessor.ts:158:17
+Seek timeout to 1.133s, continuing anyway client.js:3019:15
+Processing frame 40/250 (16.0%) poseProcessor.ts:158:17
+Seek timeout to 1.167s, continuing anyway client.js:3019:15
+Processing frame 41/250 (16.4%) poseProcessor.ts:158:17
+Seek timeout to 1.200s, continuing anyway client.js:3019:15
+Processing frame 42/250 (16.8%) poseProcessor.ts:158:17
+Seek timeout to 1.233s, continuing anyway client.js:3019:15
+Processing frame 43/250 (17.2%) poseProcessor.ts:158:17
+Seek timeout to 1.267s, continuing anyway client.js:3019:15
+Processing frame 44/250 (17.6%) poseProcessor.ts:158:17
+Seek timeout to 1.300s, continuing anyway client.js:3019:15
+Processing frame 45/250 (18.0%) poseProcessor.ts:158:17
+Seek timeout to 1.333s, continuing anyway client.js:3019:15
+Processing frame 46/250 (18.4%) poseProcessor.ts:158:17
+Seek timeout to 1.367s, continuing anyway client.js:3019:15
+Processing frame 47/250 (18.8%) poseProcessor.ts:158:17
+Seek timeout to 1.400s, continuing anyway client.js:3019:15
+Seek timeout to 1.433s, continuing anyway client.js:3019:15
+Processing frame 48/250 (19.2%) poseProcessor.ts:158:17
+Seek timeout to 1.467s, continuing anyway client.js:3019:15
+Processing frame 49/250 (19.6%) poseProcessor.ts:158:17
+Seek timeout to 1.500s, continuing anyway client.js:3019:15
+Processing frame 50/250 (20.0%) poseProcessor.ts:158:17
+Seek timeout to 1.533s, continuing anyway client.js:3019:15
+Processing frame 51/250 (20.4%) poseProcessor.ts:158:17
+Seek timeout to 1.567s, continuing anyway client.js:3019:15
+Processing frame 52/250 (20.8%) poseProcessor.ts:158:17
+Seek timeout to 1.600s, continuing anyway client.js:3019:15
+Processing frame 53/250 (21.2%) poseProcessor.ts:158:17
+Seek timeout to 1.633s, continuing anyway client.js:3019:15
+Processing frame 54/250 (21.6%) poseProcessor.ts:158:17
+Seek timeout to 1.667s, continuing anyway client.js:3019:15
+Processing frame 55/250 (22.0%) poseProcessor.ts:158:17
+Seek timeout to 1.700s, continuing anyway client.js:3019:15
+Processing frame 56/250 (22.4%) poseProcessor.ts:158:17
+Seek timeout to 1.733s, continuing anyway client.js:3019:15
+Processing frame 57/250 (22.8%) poseProcessor.ts:158:17
+Seek timeout to 1.767s, continuing anyway client.js:3019:15
+Processing frame 58/250 (23.2%) poseProcessor.ts:158:17
+Seek timeout to 1.800s, continuing anyway client.js:3019:15
+Processing frame 59/250 (23.6%) poseProcessor.ts:158:17
+Seek timeout to 1.833s, continuing anyway client.js:3019:15
+Processing frame 60/250 (24.0%) poseProcessor.ts:158:17
+Seek timeout to 1.867s, continuing anyway client.js:3019:15
+Processing frame 61/250 (24.4%) poseProcessor.ts:158:17
+Seek timeout to 1.900s, continuing anyway client.js:3019:15
+Processing frame 62/250 (24.8%) poseProcessor.ts:158:17
+Seek timeout to 1.933s, continuing anyway client.js:3019:15
+Processing frame 63/250 (25.2%) poseProcessor.ts:158:17
+Seek timeout to 1.967s, continuing anyway client.js:3019:15
+Processing frame 64/250 (25.6%) poseProcessor.ts:158:17
+Seek timeout to 2.000s, continuing anyway client.js:3019:15
+Processing frame 65/250 (26.0%) poseProcessor.ts:158:17
+Seek timeout to 2.033s, continuing anyway client.js:3019:15
+Processing frame 66/250 (26.4%) poseProcessor.ts:158:17
+Seek timeout to 2.067s, continuing anyway client.js:3019:15
+Processing frame 67/250 (26.8%) poseProcessor.ts:158:17
+Seek timeout to 2.100s, continuing anyway client.js:3019:15
+Processing frame 68/250 (27.2%) poseProcessor.ts:158:17
+Seek timeout to 2.133s, continuing anyway client.js:3019:15
+Processing frame 69/250 (27.6%) poseProcessor.ts:158:17
+Seek timeout to 2.167s, continuing anyway client.js:3019:15
+Processing frame 70/250 (28.0%) poseProcessor.ts:158:17
+Seek timeout to 2.200s, continuing anyway client.js:3019:15
+Processing frame 71/250 (28.4%) poseProcessor.ts:158:17
+Seek timeout to 2.233s, continuing anyway client.js:3019:15
+Processing frame 72/250 (28.8%) poseProcessor.ts:158:17
+Seek timeout to 2.267s, continuing anyway client.js:3019:15
+Processing frame 73/250 (29.2%) poseProcessor.ts:158:17
+Seek timeout to 2.300s, continuing anyway client.js:3019:15
+Processing frame 74/250 (29.6%) poseProcessor.ts:158:17
+Seek timeout to 2.333s, continuing anyway client.js:3019:15
+Processing frame 75/250 (30.0%) poseProcessor.ts:158:17
+Seek timeout to 2.367s, continuing anyway client.js:3019:15
+Processing frame 76/250 (30.4%) poseProcessor.ts:158:17
+Seek timeout to 2.400s, continuing anyway client.js:3019:15
+Processing frame 77/250 (30.8%) poseProcessor.ts:158:17
+Seek timeout to 2.433s, continuing anyway client.js:3019:15
+Processing frame 78/250 (31.2%) poseProcessor.ts:158:17
+Seek timeout to 2.467s, continuing anyway client.js:3019:15
+Processing frame 79/250 (31.6%) poseProcessor.ts:158:17
+Seek timeout to 2.500s, continuing anyway client.js:3019:15
+Seek timeout to 2.533s, continuing anyway client.js:3019:15
+Processing frame 80/250 (32.0%) poseProcessor.ts:158:17
+Seek timeout to 2.567s, continuing anyway client.js:3019:15
+Processing frame 81/250 (32.4%) poseProcessor.ts:158:17
+Seek timeout to 2.600s, continuing anyway client.js:3019:15
+Processing frame 82/250 (32.8%) poseProcessor.ts:158:17
+Seek timeout to 2.633s, continuing anyway client.js:3019:15
+Processing frame 83/250 (33.2%) poseProcessor.ts:158:17
+Seek timeout to 2.667s, continuing anyway client.js:3019:15
+Processing frame 84/250 (33.6%) poseProcessor.ts:158:17
+Seek timeout to 2.700s, continuing anyway client.js:3019:15
+Processing frame 85/250 (34.0%) poseProcessor.ts:158:17
+Seek timeout to 2.733s, continuing anyway client.js:3019:15
+Processing frame 86/250 (34.4%) poseProcessor.ts:158:17
+Seek timeout to 2.767s, continuing anyway client.js:3019:15
+Processing frame 87/250 (34.8%) poseProcessor.ts:158:17
+Seek timeout to 2.800s, continuing anyway client.js:3019:15
+Processing frame 88/250 (35.2%) poseProcessor.ts:158:17
+Seek timeout to 2.833s, continuing anyway client.js:3019:15
+Processing frame 89/250 (35.6%) poseProcessor.ts:158:17
+Seek timeout to 2.867s, continuing anyway client.js:3019:15
+Processing frame 90/250 (36.0%) poseProcessor.ts:158:17
+Seek timeout to 2.900s, continuing anyway client.js:3019:15
+Processing frame 91/250 (36.4%) poseProcessor.ts:158:17
+Seek timeout to 2.933s, continuing anyway client.js:3019:15
+Processing frame 92/250 (36.8%) poseProcessor.ts:158:17
+Seek timeout to 2.967s, continuing anyway client.js:3019:15
+Processing frame 93/250 (37.2%) poseProcessor.ts:158:17
+Seek timeout to 3.000s, continuing anyway client.js:3019:15
+Processing frame 94/250 (37.6%) poseProcessor.ts:158:17
+Seek timeout to 3.033s, continuing anyway client.js:3019:15
+Processing frame 95/250 (38.0%) poseProcessor.ts:158:17
+Seek timeout to 3.067s, continuing anyway client.js:3019:15
+Processing frame 96/250 (38.4%) poseProcessor.ts:158:17
+Seek timeout to 3.100s, continuing anyway client.js:3019:15
+Processing frame 97/250 (38.8%) poseProcessor.ts:158:17
+Seek timeout to 3.133s, continuing anyway client.js:3019:15
+Processing frame 98/250 (39.2%) poseProcessor.ts:158:17
+Seek timeout to 3.167s, continuing anyway client.js:3019:15
+Processing frame 99/250 (39.6%) poseProcessor.ts:158:17
+Seek timeout to 3.200s, continuing anyway client.js:3019:15
+Processing frame 100/250 (40.0%) poseProcessor.ts:158:17
+Seek timeout to 3.233s, continuing anyway client.js:3019:15
+Processing frame 101/250 (40.4%) poseProcessor.ts:158:17
+Seek timeout to 3.267s, continuing anyway client.js:3019:15
+Processing frame 102/250 (40.8%) poseProcessor.ts:158:17
+Seek timeout to 3.300s, continuing anyway client.js:3019:15
+Processing frame 103/250 (41.2%) poseProcessor.ts:158:17
+Seek timeout to 3.333s, continuing anyway client.js:3019:15
+Processing frame 104/250 (41.6%) poseProcessor.ts:158:17
+Seek timeout to 3.367s, continuing anyway client.js:3019:15
+Processing frame 105/250 (42.0%) poseProcessor.ts:158:17
+Seek timeout to 3.400s, continuing anyway client.js:3019:15
+Processing frame 106/250 (42.4%) poseProcessor.ts:158:17
+Seek timeout to 3.433s, continuing anyway client.js:3019:15
+Processing frame 107/250 (42.8%) poseProcessor.ts:158:17
+Seek timeout to 3.467s, continuing anyway client.js:3019:15
+Processing frame 108/250 (43.2%) poseProcessor.ts:158:17
+Seek timeout to 3.500s, continuing anyway client.js:3019:15
+Processing frame 109/250 (43.6%) poseProcessor.ts:158:17
+Seek timeout to 3.533s, continuing anyway client.js:3019:15
+Processing frame 110/250 (44.0%) poseProcessor.ts:158:17
+Seek timeout to 3.567s, continuing anyway client.js:3019:15
+Processing frame 111/250 (44.4%) poseProcessor.ts:158:17
+Seek timeout to 3.600s, continuing anyway client.js:3019:15
+Processing frame 112/250 (44.8%) poseProcessor.ts:158:17
+Seek timeout to 3.633s, continuing anyway client.js:3019:15
+Processing frame 113/250 (45.2%) poseProcessor.ts:158:17
+Seek timeout to 3.667s, continuing anyway client.js:3019:15
+Processing frame 114/250 (45.6%) poseProcessor.ts:158:17
+Seek timeout to 3.700s, continuing anyway client.js:3019:15
+Processing frame 115/250 (46.0%) poseProcessor.ts:158:17
+Seek timeout to 3.733s, continuing anyway client.js:3019:15
+Processing frame 116/250 (46.4%) poseProcessor.ts:158:17
+Seek timeout to 3.767s, continuing anyway client.js:3019:15
+Processing frame 117/250 (46.8%) poseProcessor.ts:158:17
+Seek timeout to 3.800s, continuing anyway client.js:3019:15
+Processing frame 118/250 (47.2%) poseProcessor.ts:158:17
+Seek timeout to 3.833s, continuing anyway client.js:3019:15
+Processing frame 119/250 (47.6%) poseProcessor.ts:158:17
+Seek timeout to 3.867s, continuing anyway client.js:3019:15
+Processing frame 120/250 (48.0%) poseProcessor.ts:158:17
+Seek timeout to 3.900s, continuing anyway client.js:3019:15
+Processing frame 121/250 (48.4%) poseProcessor.ts:158:17
+Seek timeout to 3.933s, continuing anyway client.js:3019:15
+Processing frame 122/250 (48.8%) poseProcessor.ts:158:17
+Seek timeout to 3.967s, continuing anyway client.js:3019:15
+Processing frame 123/250 (49.2%) poseProcessor.ts:158:17
+Seek timeout to 4.000s, continuing anyway client.js:3019:15
+Processing frame 124/250 (49.6%) poseProcessor.ts:158:17
+Seek timeout to 4.033s, continuing anyway client.js:3019:15
+Processing frame 125/250 (50.0%) poseProcessor.ts:158:17
+Seek timeout to 4.067s, continuing anyway client.js:3019:15
+Processing frame 126/250 (50.4%) poseProcessor.ts:158:17
+Seek timeout to 4.100s, continuing anyway client.js:3019:15
+Processing frame 127/250 (50.8%) poseProcessor.ts:158:17
+Seek timeout to 4.133s, continuing anyway client.js:3019:15
+Processing frame 128/250 (51.2%) poseProcessor.ts:158:17
+Seek timeout to 4.167s, continuing anyway client.js:3019:15
+Processing frame 129/250 (51.6%) poseProcessor.ts:158:17
+Seek timeout to 4.200s, continuing anyway client.js:3019:15
+Processing frame 130/250 (52.0%) poseProcessor.ts:158:17
+Seek timeout to 4.233s, continuing anyway client.js:3019:15
+Processing frame 131/250 (52.4%) poseProcessor.ts:158:17
+Seek timeout to 4.267s, continuing anyway client.js:3019:15
+Processing frame 132/250 (52.8%) poseProcessor.ts:158:17
+Seek timeout to 4.300s, continuing anyway client.js:3019:15
+Processing frame 133/250 (53.2%) poseProcessor.ts:158:17
+Seek timeout to 4.333s, continuing anyway client.js:3019:15
+Processing frame 134/250 (53.6%) poseProcessor.ts:158:17
+Seek timeout to 4.367s, continuing anyway client.js:3019:15
+Processing frame 135/250 (54.0%) poseProcessor.ts:158:17
+Seek timeout to 4.400s, continuing anyway client.js:3019:15
+Processing frame 136/250 (54.4%) poseProcessor.ts:158:17
+Seek timeout to 4.433s, continuing anyway client.js:3019:15
+Processing frame 137/250 (54.8%) poseProcessor.ts:158:17
+Seek timeout to 4.467s, continuing anyway client.js:3019:15
+Processing frame 138/250 (55.2%) poseProcessor.ts:158:17
+Seek timeout to 4.500s, continuing anyway client.js:3019:15
+Processing frame 139/250 (55.6%) poseProcessor.ts:158:17
+Seek timeout to 4.533s, continuing anyway client.js:3019:15
+Processing frame 140/250 (56.0%) poseProcessor.ts:158:17
+Seek timeout to 4.567s, continuing anyway client.js:3019:15
+Processing frame 141/250 (56.4%) poseProcessor.ts:158:17
+Seek timeout to 4.600s, continuing anyway client.js:3019:15
+Processing frame 142/250 (56.8%) poseProcessor.ts:158:17
+Seek timeout to 4.633s, continuing anyway client.js:3019:15
+Processing frame 143/250 (57.2%) poseProcessor.ts:158:17
+Seek timeout to 4.667s, continuing anyway client.js:3019:15
+Processing frame 144/250 (57.6%) poseProcessor.ts:158:17
+Seek timeout to 4.700s, continuing anyway client.js:3019:15
+Seek timeout to 4.733s, continuing anyway client.js:3019:15
+Processing frame 145/250 (58.0%) poseProcessor.ts:158:17
+Seek timeout to 4.767s, continuing anyway client.js:3019:15
+Processing frame 146/250 (58.4%) poseProcessor.ts:158:17
+Processing frame 147/250 (58.8%) poseProcessor.ts:158:17
+Seek timeout to 4.800s, continuing anyway client.js:3019:15
+Processing frame 148/250 (59.2%) poseProcessor.ts:158:17
+Seek timeout to 4.833s, continuing anyway client.js:3019:15
+Processing frame 149/250 (59.6%) poseProcessor.ts:158:17
+Seek timeout to 4.867s, continuing anyway client.js:3019:15
+Seek timeout to 4.900s, continuing anyway client.js:3019:15
+Processing frame 150/250 (60.0%) poseProcessor.ts:158:17
+Seek timeout to 4.933s, continuing anyway client.js:3019:15
+Processing frame 151/250 (60.4%) poseProcessor.ts:158:17
+Seek timeout to 4.967s, continuing anyway client.js:3019:15
+Processing frame 152/250 (60.8%) poseProcessor.ts:158:17
+Seek timeout to 5.000s, continuing anyway client.js:3019:15
+Processing frame 153/250 (61.2%) poseProcessor.ts:158:17
+Processing frame 154/250 (61.6%) poseProcessor.ts:158:17
+Processing frame 155/250 (62.0%) poseProcessor.ts:158:17
+Processing frame 156/250 (62.4%) poseProcessor.ts:158:17
+Seek timeout to 5.033s, continuing anyway client.js:3019:15
+Processing frame 157/250 (62.8%) poseProcessor.ts:158:17
+Processing frame 158/250 (63.2%) poseProcessor.ts:158:17
+Processing frame 159/250 (63.6%) poseProcessor.ts:158:17
+Processing frame 160/250 (64.0%) poseProcessor.ts:158:17
+Seek timeout to 5.067s, continuing anyway client.js:3019:15
+Processing frame 161/250 (64.4%) poseProcessor.ts:158:17
+Seek timeout to 5.100s, continuing anyway client.js:3019:15
+Processing frame 162/250 (64.8%) poseProcessor.ts:158:17
+Seek timeout to 5.133s, continuing anyway client.js:3019:15
+Seek timeout to 5.167s, continuing anyway client.js:3019:15
+Processing frame 163/250 (65.2%) poseProcessor.ts:158:17
+Seek timeout to 5.200s, continuing anyway client.js:3019:15
+Processing frame 164/250 (65.6%) poseProcessor.ts:158:17
+Seek timeout to 5.233s, continuing anyway client.js:3019:15
+Processing frame 165/250 (66.0%) poseProcessor.ts:158:17
+Seek timeout to 5.267s, continuing anyway client.js:3019:15
+Processing frame 166/250 (66.4%) poseProcessor.ts:158:17
+Seek timeout to 5.300s, continuing anyway client.js:3019:15
+Processing frame 167/250 (66.8%) poseProcessor.ts:158:17
+Seek timeout to 5.333s, continuing anyway client.js:3019:15
+Processing frame 168/250 (67.2%) poseProcessor.ts:158:17
+Seek timeout to 5.367s, continuing anyway client.js:3019:15
+Processing frame 169/250 (67.6%) poseProcessor.ts:158:17
+Seek timeout to 5.400s, continuing anyway client.js:3019:15
+Seek timeout to 5.433s, continuing anyway client.js:3019:15
+Processing frame 170/250 (68.0%) poseProcessor.ts:158:17
+Seek timeout to 5.467s, continuing anyway client.js:3019:15
+Processing frame 171/250 (68.4%) poseProcessor.ts:158:17
+Processing frame 172/250 (68.8%) poseProcessor.ts:158:17
+Seek timeout to 5.500s, continuing anyway client.js:3019:15
+Seek timeout to 5.533s, continuing anyway client.js:3019:15
+Processing frame 173/250 (69.2%) poseProcessor.ts:158:17
+Seek timeout to 5.567s, continuing anyway client.js:3019:15
+Processing frame 174/250 (69.6%) poseProcessor.ts:158:17
+Seek timeout to 5.600s, continuing anyway client.js:3019:15
+Processing frame 175/250 (70.0%) poseProcessor.ts:158:17
+Seek timeout to 5.633s, continuing anyway client.js:3019:15
+Processing frame 176/250 (70.4%) poseProcessor.ts:158:17
+Seek timeout to 5.667s, continuing anyway client.js:3019:15
+Seek timeout to 5.700s, continuing anyway client.js:3019:15
+Processing frame 177/250 (70.8%) poseProcessor.ts:158:17
+Seek timeout to 5.733s, continuing anyway client.js:3019:15
+Processing frame 178/250 (71.2%) poseProcessor.ts:158:17
+Seek timeout to 5.767s, continuing anyway client.js:3019:15
+Processing frame 179/250 (71.6%) poseProcessor.ts:158:17
+Seek timeout to 5.800s, continuing anyway client.js:3019:15
+Processing frame 180/250 (72.0%) poseProcessor.ts:158:17
+Processing frame 181/250 (72.4%) poseProcessor.ts:158:17
+Seek timeout to 5.833s, continuing anyway client.js:3019:15
+Seek timeout to 5.867s, continuing anyway client.js:3019:15
+Processing frame 182/250 (72.8%) poseProcessor.ts:158:17
+Seek timeout to 5.900s, continuing anyway client.js:3019:15
+Processing frame 183/250 (73.2%) poseProcessor.ts:158:17
+Seek timeout to 5.933s, continuing anyway client.js:3019:15
+Seek timeout to 5.967s, continuing anyway client.js:3019:15
+Processing frame 184/250 (73.6%) poseProcessor.ts:158:17
+Seek timeout to 6.000s, continuing anyway client.js:3019:15
+Processing frame 185/250 (74.0%) poseProcessor.ts:158:17
+Seek timeout to 6.033s, continuing anyway client.js:3019:15
+Processing frame 186/250 (74.4%) poseProcessor.ts:158:17
+Seek timeout to 6.067s, continuing anyway client.js:3019:15
+Processing frame 187/250 (74.8%) poseProcessor.ts:158:17
+Seek timeout to 6.100s, continuing anyway client.js:3019:15
+Processing frame 188/250 (75.2%) poseProcessor.ts:158:17
+Processing frame 189/250 (75.6%) poseProcessor.ts:158:17
+Seek timeout to 6.133s, continuing anyway client.js:3019:15
+Processing frame 190/250 (76.0%) poseProcessor.ts:158:17
+Seek timeout to 6.167s, continuing anyway client.js:3019:15
+Processing frame 191/250 (76.4%) poseProcessor.ts:158:17
+Seek timeout to 6.200s, continuing anyway client.js:3019:15
+Processing frame 192/250 (76.8%) poseProcessor.ts:158:17
+Seek timeout to 6.233s, continuing anyway client.js:3019:15
+Seek timeout to 6.267s, continuing anyway client.js:3019:15
+Processing frame 193/250 (77.2%) poseProcessor.ts:158:17
+Processing frame 194/250 (77.6%) poseProcessor.ts:158:17
+Seek timeout to 6.300s, continuing anyway client.js:3019:15
+Seek timeout to 6.333s, continuing anyway client.js:3019:15
+Processing frame 195/250 (78.0%) poseProcessor.ts:158:17
+Seek timeout to 6.367s, continuing anyway client.js:3019:15
+Processing frame 196/250 (78.4%) poseProcessor.ts:158:17
+Seek timeout to 6.400s, continuing anyway client.js:3019:15
+Processing frame 197/250 (78.8%) poseProcessor.ts:158:17
+Seek timeout to 6.433s, continuing anyway client.js:3019:15
+Processing frame 198/250 (79.2%) poseProcessor.ts:158:17
+Seek timeout to 6.467s, continuing anyway client.js:3019:15
+Processing frame 199/250 (79.6%) poseProcessor.ts:158:17
+Seek timeout to 6.500s, continuing anyway client.js:3019:15
+Processing frame 200/250 (80.0%) poseProcessor.ts:158:17
+Seek timeout to 6.533s, continuing anyway client.js:3019:15
+Processing frame 201/250 (80.4%) poseProcessor.ts:158:17
+Seek timeout to 6.567s, continuing anyway client.js:3019:15
+Processing frame 202/250 (80.8%) poseProcessor.ts:158:17
+Seek timeout to 6.600s, continuing anyway client.js:3019:15
+Processing frame 203/250 (81.2%) poseProcessor.ts:158:17
+Seek timeout to 6.633s, continuing anyway client.js:3019:15
+Processing frame 204/250 (81.6%) poseProcessor.ts:158:17
+Seek timeout to 6.667s, continuing anyway client.js:3019:15
+Processing frame 205/250 (82.0%) poseProcessor.ts:158:17
+Seek timeout to 6.700s, continuing anyway client.js:3019:15
+Processing frame 206/250 (82.4%) poseProcessor.ts:158:17
+Seek timeout to 6.733s, continuing anyway client.js:3019:15
+Processing frame 207/250 (82.8%) poseProcessor.ts:158:17
+Seek timeout to 6.767s, continuing anyway client.js:3019:15
+Processing frame 208/250 (83.2%) poseProcessor.ts:158:17
+Seek timeout to 6.800s, continuing anyway client.js:3019:15
+Processing frame 209/250 (83.6%) poseProcessor.ts:158:17
+Seek timeout to 6.833s, continuing anyway client.js:3019:15
+Processing frame 210/250 (84.0%) poseProcessor.ts:158:17
+Seek timeout to 6.867s, continuing anyway client.js:3019:15
+Processing frame 211/250 (84.4%) poseProcessor.ts:158:17
+Seek timeout to 6.900s, continuing anyway client.js:3019:15
+Processing frame 212/250 (84.8%) poseProcessor.ts:158:17
+Seek timeout to 6.933s, continuing anyway client.js:3019:15
+Seek timeout to 6.967s, continuing anyway client.js:3019:15
+Processing frame 213/250 (85.2%) poseProcessor.ts:158:17
+Seek timeout to 7.000s, continuing anyway client.js:3019:15
+Processing frame 214/250 (85.6%) poseProcessor.ts:158:17
+Seek timeout to 7.033s, continuing anyway client.js:3019:15
+Processing frame 215/250 (86.0%) poseProcessor.ts:158:17
+Processing frame 216/250 (86.4%) poseProcessor.ts:158:17
+Seek timeout to 7.067s, continuing anyway client.js:3019:15
+Processing frame 217/250 (86.8%) poseProcessor.ts:158:17
+Seek timeout to 7.100s, continuing anyway client.js:3019:15
+Seek timeout to 7.133s, continuing anyway client.js:3019:15
+Processing frame 218/250 (87.2%) poseProcessor.ts:158:17
+Seek timeout to 7.167s, continuing anyway client.js:3019:15
+Processing frame 219/250 (87.6%) poseProcessor.ts:158:17
+Seek timeout to 7.200s, continuing anyway client.js:3019:15
+Processing frame 220/250 (88.0%) poseProcessor.ts:158:17
+Seek timeout to 7.233s, continuing anyway client.js:3019:15
+Processing frame 221/250 (88.4%) poseProcessor.ts:158:17
+Seek timeout to 7.267s, continuing anyway client.js:3019:15
+Processing frame 222/250 (88.8%) poseProcessor.ts:158:17
+Seek timeout to 7.300s, continuing anyway client.js:3019:15
+Processing frame 223/250 (89.2%) poseProcessor.ts:158:17
+Processing frame 224/250 (89.6%) poseProcessor.ts:158:17
+Seek timeout to 7.333s, continuing anyway client.js:3019:15
+Seek timeout to 7.367s, continuing anyway client.js:3019:15
+Processing frame 225/250 (90.0%) poseProcessor.ts:158:17
+Seek timeout to 7.400s, continuing anyway client.js:3019:15
+Processing frame 226/250 (90.4%) poseProcessor.ts:158:17
+Seek timeout to 7.433s, continuing anyway client.js:3019:15
+Processing frame 227/250 (90.8%) poseProcessor.ts:158:17
+Seek timeout to 7.467s, continuing anyway client.js:3019:15
+Processing frame 228/250 (91.2%) poseProcessor.ts:158:17
+Seek timeout to 7.500s, continuing anyway client.js:3019:15
+Processing frame 229/250 (91.6%) poseProcessor.ts:158:17
+Seek timeout to 7.533s, continuing anyway client.js:3019:15
+Processing frame 230/250 (92.0%) poseProcessor.ts:158:17
+Seek timeout to 7.567s, continuing anyway client.js:3019:15
+Processing frame 231/250 (92.4%) poseProcessor.ts:158:17
+Seek timeout to 7.600s, continuing anyway client.js:3019:15
+Processing frame 232/250 (92.8%) poseProcessor.ts:158:17
+Seek timeout to 7.633s, continuing anyway client.js:3019:15
+Processing frame 233/250 (93.2%) poseProcessor.ts:158:17
+Seek timeout to 7.667s, continuing anyway client.js:3019:15
+Processing frame 234/250 (93.6%) poseProcessor.ts:158:17
+Seek timeout to 7.700s, continuing anyway client.js:3019:15
+Processing frame 235/250 (94.0%) poseProcessor.ts:158:17
+Seek timeout to 7.733s, continuing anyway client.js:3019:15
+Processing frame 236/250 (94.4%) poseProcessor.ts:158:17
+Seek timeout to 7.767s, continuing anyway client.js:3019:15
+Processing frame 237/250 (94.8%) poseProcessor.ts:158:17
+Seek timeout to 7.800s, continuing anyway client.js:3019:15
+Processing frame 238/250 (95.2%) poseProcessor.ts:158:17
+Seek timeout to 7.833s, continuing anyway client.js:3019:15
+Processing frame 239/250 (95.6%) poseProcessor.ts:158:17
+Seek timeout to 7.867s, continuing anyway client.js:3019:15
+Processing frame 240/250 (96.0%) poseProcessor.ts:158:17
+Seek timeout to 7.900s, continuing anyway client.js:3019:15
+Processing frame 241/250 (96.4%) poseProcessor.ts:158:17
+Seek timeout to 7.933s, continuing anyway client.js:3019:15
+Processing frame 242/250 (96.8%) poseProcessor.ts:158:17
+Seek timeout to 7.967s, continuing anyway client.js:3019:15
+Processing frame 243/250 (97.2%) poseProcessor.ts:158:17
+Seek timeout to 8.000s, continuing anyway client.js:3019:15
+Processing frame 244/250 (97.6%) poseProcessor.ts:158:17
+Seek timeout to 8.033s, continuing anyway client.js:3019:15
+Processing frame 245/250 (98.0%) poseProcessor.ts:158:17
+Seek timeout to 8.067s, continuing anyway client.js:3019:15
+Processing frame 246/250 (98.4%) poseProcessor.ts:158:17
+Seek timeout to 8.100s, continuing anyway client.js:3019:15
+Processing frame 247/250 (98.8%) poseProcessor.ts:158:17
+Seek timeout to 8.133s, continuing anyway client.js:3019:15
+Processing frame 248/250 (99.2%) poseProcessor.ts:158:17
+Seek timeout to 8.167s, continuing anyway client.js:3019:15
+Processing frame 249/250 (99.6%) poseProcessor.ts:158:17
+Seek timeout to 8.200s, continuing anyway client.js:3019:15
+Processing frame 250/250 (100.0%) poseProcessor.ts:158:17
+Seek timeout to 8.233s, continuing anyway client.js:3019:15
 MediaPipe processing complete: 
 Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
+poseProcessor.ts:177:15
+Total frames processed: 0 poseProcessor.ts:178:15
 MediaPipe processing completed, loading result: 
 Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
+App.svelte:1129:15
+Result joint count: 33 App.svelte:1130:15
 Result joint names: 
 Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 0 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
+App.svelte:1131:15
+First joint frames count: 0 App.svelte:1132:15
+PoseData BEFORE loading: 0 joints App.svelte:1133:15
+LoadFromMediaPipeResult called with: 33 joints App.svelte:1078:12
+LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1080:12
+PoseData AFTER loading: 33 joints App.svelte:1135:15
 PoseData joint names after loading: 
 Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
+App.svelte:1136:15
 PoseData updated: 
 Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 309 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-Processed frame 316/250 (126.4%) poseProcessor.ts:177:17
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 310 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 310 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-Processed frame 317/250 (126.8%) poseProcessor.ts:177:17
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-PoseData FINAL state: 33 joints 21 App.svelte:1086:17
-MediaPipe processing complete: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-poseProcessor.ts:158:21
-MediaPipe processing completed, loading result: 
-Object { joints: {…}, processingComplete: true, progress: 1 }
-App.svelte:1064:15
-Result joint count: 33 App.svelte:1065:15
-Result joint names: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1066:15
-First joint frames count: 311 App.svelte:1067:15
-PoseData BEFORE loading: 33 joints App.svelte:1068:15
-LoadFromMediaPipeResult called with: 33 joints App.svelte:1026:12
-LoadFromMediaPipeResult finished, this.joints now has: 33 joints App.svelte:1028:12
-PoseData AFTER loading: 33 joints App.svelte:1070:15
-PoseData joint names after loading: 
-Array(33) [ "nose", "left_eye_inner", "left_eye", "left_eye_outer", "right_eye_inner", "right_eye", "right_eye_outer", "left_ear", "right_ear", "mouth_left", … ]
-App.svelte:1071:15
-PoseData updated: 
-Object { joints: {…} }
-App.svelte:1091:15
-PoseData FINAL state: 33 joints 42 App.svelte:1086:17
+App.svelte:1156:15
+Seek timeout to 8.267s, continuing anyway client.js:3019:15
+PoseData FINAL state: 33 joints App.svelte:1151:17
+Seek timeout to 8.300s, continuing anyway client.js:3019:15

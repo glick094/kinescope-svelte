@@ -11,6 +11,8 @@
   export let videoLoaded: boolean;
   export let videoElement: HTMLVideoElement | null = null;
   export let configurationComplete: boolean;
+  export let frameCount: number = 0;
+  export let resetTrigger: number = 0;
 
   let csvFileInput: HTMLInputElement;
   let isUploadingCSV: boolean = false;
@@ -71,6 +73,13 @@
     csvFileName = '';
     processingComplete = false;
   }
+
+  // Reset state when reset is triggered
+  $: if (resetTrigger) {
+    csvFileName = '';
+    processingComplete = false;
+    isUploadingCSV = false;
+  }
 </script>
 
 <div class="action-panel">
@@ -98,15 +107,27 @@
             <span>Loading CSV data...</span>
           </div>
         {:else if processingComplete && poseMode === 'process'}
-          <div class="completion-message">
-            <i class="fas fa-check-circle"></i>
-            <span>Pose detection completed successfully!</span>
+          <div class="completion-box">
+            <div class="completion-header">
+              <i class="fas fa-check"></i>
+              <span class="completion-title">Pose Detection Complete</span>
+            </div>
+            <div class="completion-details">
+              <span class="frame-count">{frameCount} frames processed</span>
+              <span class="success-indicator">✓ Ready for analysis</span>
+            </div>
           </div>
         {:else if csvFileName && poseMode === 'upload'}
-          <div class="upload-success">
-            <i class="fas fa-file-csv"></i>
-            <span class="filename">{csvFileName}</span>
-            <span class="success-text">CSV data loaded successfully!</span>
+          <div class="completion-box">
+            <div class="completion-header">
+              <i class="fas fa-check"></i>
+              <span class="completion-title">CSV Data Loaded</span>
+            </div>
+            <div class="completion-details">
+              <span class="filename">{csvFileName}</span>
+              <span class="frame-count">{frameCount} frames loaded</span>
+              <span class="success-indicator">✓ Ready for analysis</span>
+            </div>
           </div>
         {:else}
           <button 
@@ -281,47 +302,61 @@
     transition: width 0.3s ease;
   }
 
-  .completion-message {
+  .completion-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    color: #495057;
+  }
+
+  .completion-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-    border-radius: 6px;
-    color: #155724;
-    font-weight: 500;
+    gap: 8px;
   }
 
-  .completion-message i {
+  .completion-header i {
     color: #28a745;
-    font-size: 16px;
+    font-size: 18px;
   }
 
-  .upload-success {
+  .completion-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #28a745;
+  }
+
+  .completion-details {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 12px 16px;
-    background: #d1ecf1;
-    border: 1px solid #bee5eb;
-    border-radius: 6px;
-    color: #0c5460;
+    margin-left: 26px;
   }
 
-  .upload-success i {
-    color: #007bff;
-    font-size: 16px;
+  .frame-count {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
   }
 
   .filename {
-    font-weight: 600;
     font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    font-family: monospace;
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 3px;
   }
 
-  .success-text {
+  .success-indicator {
     font-size: 12px;
-    opacity: 0.8;
+    color: #28a745;
+    font-weight: 500;
   }
 
   .loading-container {

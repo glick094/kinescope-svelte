@@ -49,6 +49,17 @@
   };
   let configurationComplete: boolean = false;
 
+  // Calculate frame count from pose data
+  $: frameCount = (() => {
+    const jointNames = Object.keys(poseData.joints);
+    if (jointNames.length === 0) return 0;
+    const firstJoint = poseData.joints[jointNames[0]];
+    return firstJoint ? firstJoint.frames.length : 0;
+  })();
+
+  // Reset trigger for child components
+  let resetTrigger: number = 0;
+
   // PoseData class
   class PoseData {
     joints: { [key: string]: JointData } = {};
@@ -269,6 +280,9 @@
       videoElement.currentTime = 0;
     }
     
+    // Trigger reset in child components
+    resetTrigger++;
+    
     console.log('Workflow reset');
   }
 </script>
@@ -307,6 +321,8 @@
         {videoElement}
         videoLoaded={!!videoSrc}
         {configurationComplete}
+        {frameCount}
+        {resetTrigger}
       />
       <KeypointSelector poseData={poseData} setJointMask={setJointMaskHandler} step2Completed={processingProgress >= 1.0 && !isProcessingPose && poseData && Object.keys(poseData.joints).length > 0}/>
     </div>

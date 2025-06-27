@@ -12,6 +12,13 @@ export interface PoseProcessingResult {
 }
 
 export interface PoseProcessorOptions {
+  mediapipeSettings?: {
+    modelComplexity?: number;
+    minDetectionConfidence?: number;
+    minTrackingConfidence?: number;
+    smoothLandmarks?: boolean;
+    selfieMode?: boolean;
+  };
   onProgress?: (progress: number) => void;
   onComplete?: (result: PoseProcessingResult) => void;
   onError?: (error: string) => void;
@@ -120,13 +127,16 @@ export class PoseProcessor {
         }
       });
 
+      // Use provided settings or defaults
+      const settings = this.options.mediapipeSettings || {};
       this.pose.setOptions({
-        modelComplexity: 1,
-        smoothLandmarks: true,
+        modelComplexity: settings.modelComplexity ?? 1,
+        smoothLandmarks: settings.smoothLandmarks ?? true,
         enableSegmentation: false,
         smoothSegmentation: false,
-        minDetectionConfidence: 0.3,
-        minTrackingConfidence: 0.3
+        minDetectionConfidence: settings.minDetectionConfidence ?? 0.5,
+        minTrackingConfidence: settings.minTrackingConfidence ?? 0.5,
+        selfieMode: settings.selfieMode ?? false
       });
       
       // Wait for pose to initialize
@@ -172,10 +182,18 @@ export class PoseProcessor {
     console.log(`Video readyState: ${videoElement.readyState}, duration: ${videoElement.duration}`);
     console.log(`Video dimensions: ${videoElement.videoWidth}x${videoElement.videoHeight}`);
 
+    // Pause video for processing
+    const wasPlaying = !videoElement.paused;
+    videoElement.pause();
+
     this.isProcessing = true;
     const duration = videoElement.duration;
-    const frameRate = 30; // Assume 30 fps, can be made configurable
+    const frameRate = 30; // Process every frame at 30fps
     const frameCount = Math.floor(duration * frameRate);
+    
+    // Pre-size canvas once
+    this.canvas.width = videoElement.videoWidth || 640;
+    this.canvas.height = videoElement.videoHeight || 480;
     
     const joints: { [key: string]: JointData } = {};
     
@@ -190,112 +208,134 @@ export class PoseProcessor {
 
     console.log(`Starting MediaPipe processing: ${frameCount} frames at ${frameRate}fps`);
     
-    return new Promise((resolve, reject) => {
-      let processedFrames = 0;
-      let currentFrameIndex = 0;
+    try {
+      // Start video playback and capture frames as they play
+      videoElement.currentTime = 0;
+      await new Promise(resolve => setTimeout(resolve, 100)); // Wait for seek to complete
       
-      const processNextFrameSequentially = async () => {
-        try {
-          if (currentFrameIndex >= frameCount || !this.isProcessing) {
-            // Processing complete
-            this.isProcessing = false;
-            const result: PoseProcessingResult = {
-              joints,
-              processingComplete: true,
-              progress: 1.0
-            };
-            console.log('MediaPipe processing complete:', result);
-            this.options.onComplete?.(result);
-            resolve(result);
-            return;
-          }
-          
-          // Process current frame
-          await this.processNextFrame(videoElement, frameRate, currentFrameIndex);
-          currentFrameIndex++;
-          
-        } catch (error) {
-          console.error('Error processing frame:', error);
-          this.isProcessing = false;
-          reject(error);
-        }
-      };
+      videoElement.playbackRate = 0.25; // Slow down playback for better frame capture
+      videoElement.play();
       
-      this.pose.onResults((results: Results) => {
-        const currentTime = currentFrameIndex / frameRate;
-        this.processResults(results, joints, currentTime);
-        processedFrames++;
-        
-        const progress = processedFrames / frameCount;
-        this.options.onProgress?.(progress);
-        
-        console.log(`Processed frame ${processedFrames}/${frameCount} (${(progress * 100).toFixed(1)}%)`);
-        
-        // Process next frame after this one is done
-        setTimeout(() => processNextFrameSequentially(), 10);
-      });
-
-      // Start processing
-      processNextFrameSequentially();
-    });
-  }
-
-  private async processNextFrame(videoElement: HTMLVideoElement, frameRate: number, frameIndex: number) {
-    const timeToSeek = frameIndex / frameRate;
-    
-    return new Promise<void>((resolve) => {
-      const processFrame = async () => {
-        // Ensure video is ready to draw
-        if (videoElement.readyState < 2) {
-          resolve();
+      let frameIndex = 0;
+      let lastProcessedTime = -1;
+      const frameInterval = 1 / frameRate; // Time between frames we want to process
+      
+      const processCurrentFrame = async () => {
+        if (!this.isProcessing || frameIndex >= frameCount) {
           return;
         }
         
-        // Draw current frame to canvas
-        this.canvas.width = videoElement.videoWidth;
-        this.canvas.height = videoElement.videoHeight;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        const currentTime = videoElement.currentTime;
+        const expectedTime = frameIndex * frameInterval;
         
-        try {
-          // Ensure video is not paused for drawing - temporarily play if needed
-          const wasPlaying = !videoElement.paused;
-          if (videoElement.paused) {
-            videoElement.play();
-            await new Promise(r => setTimeout(r, 16)); // ~1 frame at 60fps
+        // Only process if we're close to the expected time for this frame
+        if (currentTime >= expectedTime && currentTime > lastProcessedTime + frameInterval * 0.5) {
+          console.log(`Processing frame ${frameIndex + 1}/${frameCount} (${((frameIndex + 1) / frameCount * 100).toFixed(1)}%) at time ${currentTime.toFixed(3)}s`);
+          
+          // Capture and process frame
+          const frameData = await this.captureCurrentFrame(videoElement, frameIndex);
+          
+          if (frameData) {
+            this.processResults(frameData, joints, currentTime);
           }
           
-          this.ctx.drawImage(videoElement, 0, 0);
+          lastProcessedTime = currentTime;
+          frameIndex++;
           
-          // Pause again if it was originally paused
-          if (!wasPlaying) {
-            videoElement.pause();
-          }
-          
-        } catch (error) {
-          console.error(`Frame ${frameIndex}: Error drawing video to canvas:`, error);
+          // Update progress
+          const progress = frameIndex / frameCount;
+          this.options.onProgress?.(progress);
         }
         
-        // Send frame to MediaPipe
+        // Schedule next frame check
+        if (frameIndex < frameCount && this.isProcessing) {
+          requestAnimationFrame(() => processCurrentFrame());
+        } else {
+          videoElement.pause();
+          if (wasPlaying) {
+            videoElement.play();
+          }
+        }
+      };
+      
+      // Start processing
+      processCurrentFrame();
+      
+      // Wait for all frames to be processed
+      while (frameIndex < frameCount && this.isProcessing) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      
+      // Restore video state
+      if (wasPlaying) {
+        videoElement.play();
+      }
+      
+      this.isProcessing = false;
+      const result: PoseProcessingResult = {
+        joints,
+        processingComplete: true,
+        progress: 1.0
+      };
+      
+      console.log('MediaPipe processing complete:', result);
+      console.log('Total frames processed:', Object.keys(joints).length > 0 ? joints[Object.keys(joints)[0]].frames.length : 0);
+      
+      this.options.onComplete?.(result);
+      return result;
+      
+    } catch (error) {
+      // Restore video state
+      if (wasPlaying) {
+        videoElement.play();
+      }
+      
+      this.isProcessing = false;
+      console.error('Processing failed:', error);
+      this.options.onError?.(error.toString());
+      throw error;
+    }
+  }
+
+  private async captureCurrentFrame(videoElement: HTMLVideoElement, frameIndex: number): Promise<Results | null> {
+    return new Promise<Results | null>((resolve) => {
+      try {
+        // Ensure video is ready to draw
+        if (videoElement.readyState < 2) {
+          console.warn(`Frame ${frameIndex}: Video not ready (readyState: ${videoElement.readyState})`);
+          resolve(null);
+          return;
+        }
+        
+        // Clear and draw to canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.drawImage(videoElement, 0, 0, this.canvas.width, this.canvas.height);
+        
+        // Set up one-time result handler
+        const resultHandler = (results: Results) => {
+          this.pose.onResults(() => {}); // Clear the handler
+          resolve(results);
+        };
+        
+        // Set up timeout
+        const timeoutId = setTimeout(() => {
+          this.pose.onResults(() => {}); // Clear the handler
+          console.warn(`Frame ${frameIndex}: MediaPipe processing timeout`);
+          resolve(null);
+        }, 1000);
+        
+        // Set result handler and send frame
+        this.pose.onResults((results: Results) => {
+          clearTimeout(timeoutId);
+          resultHandler(results);
+        });
+        
         this.pose.send({ image: this.canvas });
-        resolve();
-      };
-      
-      const seekHandler = () => {
-        videoElement.removeEventListener('seeked', seekHandler);
-        setTimeout(() => processFrame(), 50);
-      };
-      
-      // Add timeout to prevent hanging
-      const timeoutHandler = () => {
-        videoElement.removeEventListener('seeked', seekHandler);
-        processFrame();
-      };
-      
-      videoElement.addEventListener('seeked', seekHandler);
-      setTimeout(timeoutHandler, 200); // 200ms timeout
-      
-      // Perform the seek
-      videoElement.currentTime = timeToSeek;
+        
+      } catch (error) {
+        console.error(`Frame ${frameIndex}: Error processing frame:`, error);
+        resolve(null);
+      }
     });
   }
 
@@ -317,9 +357,19 @@ export class PoseProcessor {
     }
   }
 
+  private cleanup() {
+    // Clear canvas
+    if (this.canvas && this.ctx) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+  }
+
+
 
   stopProcessing() {
     this.isProcessing = false;
+    this.cleanup();
+    console.log('Pose processing stopped and cleaned up');
   }
 
   isCurrentlyProcessing(): boolean {
