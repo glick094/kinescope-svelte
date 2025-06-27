@@ -14,12 +14,14 @@
 - [ ] be able to click on an XY point and jump to that frame
 - [ ] be able to highlight a region of XY points, and shade in those frames on the timeline
 - [ ] for uploaded data, make sure that frame data is included, and synced data is 
+- [ ] reduce the amount of data shown (have it be a user setting)
+- [ ] have trajectory trail length be a user setting
 
 == Layout checklist
 
 - [x] get screen to resize with window
 - [x] reduce vertical height of video and XY plot, so timeline is taller
-- [x] XY plot aspect ratio should match the aspect ratio of the video. 
+- [ ] XY plot aspect ratio should match the aspect ratio of the video. (so it looks like a similar space on the video)
 - [x] get XY plot to be X: -0.2->1.2 and Y: 1.2 -> -0.2 so it looks more or less what's on screen
 -- [ ] don't manually change the values on y coords
 - [ ] timeline x axis labels should be on the bottom of the graph
@@ -31,12 +33,14 @@
 - [x] add preselects for common groups of keypoints
 - [ ] add configuration parameters for mediapipe 
 
+
 == Colors and Themes
 
 - [ ] add themes that can be selected
 - [x] use Paul Tol's color blind palette
 - [x] set plotting colors to always follow first is always the same color 
 - [x] make color on the plot match color on mediapipe overlay
+- [ ] put a white border around the current point and trails in XY plot. 
 
 // This is a lot closer, as shown here [Image #1]. (1) change our color palette to Paul Tol's color blind palette (2) I'd like to reduce the vertical height of the video and the XY plot. The timeline should be taller (3) I don't want to actually change the values of the Y axis, I just want to reverse the order. (4)  increase the opacity of the other XY point even more as they are too visible. Make the current frame XY point larger, and include maybe the 15 points on either side. These should really stand out. (5) Lastly, I notice on the video overlay when I push play, there seems to be a delay in the pose data ralated to the video, as shown. It always catches up, but maybe we should use the `frame_time_ms` column as the frame from the csv?
 
