@@ -70,8 +70,8 @@
     updateJointMask();
   }
 
-  function selectPreset(presetKey: keyof typeof presets): void {
-    const preset = presets[presetKey];
+  function selectPreset(presetKey: string): void {
+    const preset = presets[presetKey as keyof typeof presets];
     if (preset) {
       // Add all joints from preset to selection
       preset.joints.forEach((joint: string) => {
@@ -118,8 +118,8 @@
 
   $: jointNames = poseData && poseData.joints ? Object.keys(poseData.joints).sort() : [];
   $: hasData = poseData && jointNames.length > 0;
-  $: step3Enabled = step2Completed && hasData;
-  $: step3Status = selectedJoints.size > 0 ? 'completed' : (step3Enabled ? 'current' : 'future');
+  $: step4Enabled = step2Completed && hasData;
+  $: step4Status = selectedJoints.size > 0 ? 'completed' : (step4Enabled ? 'current' : 'future');
 
 </script>
 
@@ -128,22 +128,22 @@
 <div class="keypoint-selector">
   <div class="step-section">
     <div class="step-row">
-      <span class="step-number {step3Status}">3</span>
+      <span class="step-number {step4Status}">4</span>
       <button 
-        class="selector-button {step3Status}" 
+        class="selector-button {step4Status}" 
         on:click={togglePopup}
-        disabled={!step3Enabled}
-        class:disabled={!step3Enabled}
+        disabled={!step4Enabled}
+        class:disabled={!step4Enabled}
       >
-        <i class="fas fa-crosshairs"></i>
+        <i class="fas fa-check-square"></i>
         Select Keypoints
         <span class="selection-count">({selectedJoints.size})</span>
-        <i class="fas fa-chevron-down" class:rotated={isOpen}></i>
+        <!-- <i class="fas fa-chevron-down" class:rotated={isOpen}></i> -->
       </button>
     </div>
   </div>
   
-  {#if isOpen && step3Enabled}
+  {#if isOpen && step4Enabled}
     <div class="popup-menu">
       <!-- Preset Buttons Section -->
       <div class="preset-section">

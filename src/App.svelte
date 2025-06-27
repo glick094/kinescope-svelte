@@ -5,7 +5,8 @@
   import ScatterPlot from './ScatterPlot.svelte';
   import Timeline from './Timeline.svelte';
   import ConsoleComponent from './ConsoleComponent.svelte';
-  import PoseProcessingPanel from './PoseProcessingPanel.svelte';
+  import PoseConfigurationPanel from './PoseConfigurationPanel.svelte';
+  import PoseActionPanel from './PoseActionPanel.svelte';
   import VideoUploader from './VideoUploader.svelte';
   import KeypointSelector from './KeypointSelector.svelte';
   import { PoseProcessor, type PoseProcessingResult } from './lib/poseProcessor';
@@ -36,6 +37,17 @@
   let poseProcessor: PoseProcessor;
   let isProcessingPose: boolean = false;
   let processingProgress: number = 0;
+
+  // New state for redesigned workflow
+  let poseMode: 'process' | 'upload' = 'process';
+  let mediapipeSettings = {
+    modelComplexity: 1,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5,
+    smoothLandmarks: true,
+    selfieMode: false
+  };
+  let configurationComplete: boolean = false;
 
   // PoseData class
   class PoseData {
@@ -132,6 +144,18 @@
     videoSrc = newSrc;
   }
 
+  function setPoseMode(mode: 'process' | 'upload'): void {
+    poseMode = mode;
+  }
+
+  function setMediapipeSettings(settings: typeof mediapipeSettings): void {
+    mediapipeSettings = settings;
+  }
+
+  function setConfigurationComplete(complete: boolean): void {
+    configurationComplete = complete;
+  }
+
   async function startPoseProcessing(): Promise<void> {
     if (!videoElement || !videoSrc || isProcessingPose) {
       return;
@@ -142,6 +166,7 @@
 
     try {
       poseProcessor = new PoseProcessor({
+        mediapipeSettings: mediapipeSettings,
         onProgress: (progress: number) => {
           processingProgress = progress;
         },
@@ -223,6 +248,17 @@
     isProcessingPose = false;
     processingProgress = 0;
     
+    // Reset new workflow state
+    poseMode = 'process';
+    mediapipeSettings = {
+      modelComplexity: 1,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
+      smoothLandmarks: true,
+      selfieMode: false
+    };
+    configurationComplete = false;
+    
     // Clear pose data
     poseData.joints = {};
     poseData = poseData; // Trigger reactivity
@@ -252,7 +288,17 @@
         </button>
       {/if}
       <VideoUploader setVideoSrc={setVideoSrcHandler} videoLoaded={!!videoSrc}/>
-      <PoseProcessingPanel 
+      <PoseConfigurationPanel 
+        videoLoaded={!!videoSrc}
+        {poseMode}
+        setPoseMode={setPoseMode}
+        {mediapipeSettings}
+        setMediapipeSettings={setMediapipeSettings}
+        {configurationComplete}
+        setConfigurationComplete={setConfigurationComplete}
+      />
+      <PoseActionPanel 
+        {poseMode}
         isProcessing={isProcessingPose}
         progress={processingProgress}
         onStartProcessing={startPoseProcessing}
@@ -260,6 +306,7 @@
         onCSVUploaded={handleCSVUpload}
         {videoElement}
         videoLoaded={!!videoSrc}
+        {configurationComplete}
       />
       <KeypointSelector poseData={poseData} setJointMask={setJointMaskHandler} step2Completed={processingProgress >= 1.0 && !isProcessingPose && poseData && Object.keys(poseData.joints).length > 0}/>
     </div>

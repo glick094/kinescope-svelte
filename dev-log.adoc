@@ -27,7 +27,9 @@
 - [x] make the frame XY point even bigger so it stands out clearly
 - [x] for the forward-backward "onion skin" on XY plot, make the size difference more visible, use 10 points 
 - [x] for the forward-backward "onion skin" on XY plot, maybe we should connect the points? 
-- [ ] alphabetize the keypoints in list
+- [x] alphabetize the keypoints in list
+- [x] add preselects for common groups of keypoints
+- [ ] add configuration parameters for mediapipe 
 
 == Colors and Themes
 
