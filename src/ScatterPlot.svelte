@@ -524,7 +524,7 @@
 
   .visibility-controls {
     position: absolute;
-    top: 50px;
+    top: 125px;
     right: 10px;
     display: flex;
     flex-direction: column;
