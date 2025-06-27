@@ -30,6 +30,7 @@
   export let syncedTime: number;
   export let isLoading: boolean = false;
 
+
   let zoomLevel = 1;
   let panX = 0;
   let panY = 0;
@@ -101,8 +102,70 @@
     }
   }
 
+  async function createPlaceholderChart(): Promise<void> {
+    if (!canvasElement) return;
+
+    const ctx = canvasElement.getContext('2d')!;
+
+    const config: ChartConfiguration = {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'No data available',
+          data: [],
+          backgroundColor: [],
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0)',
+          showLine: false,
+          animation: {
+            duration: 0
+          }
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, 
+        aspectRatio: 1,
+        scales: {
+          y: {
+            min: -0.05,
+            max: 1.05,
+            reverse: false,
+            title: {
+              display: true,
+              text: 'Y Position'
+            }
+          },
+          x: {
+            min: -0.05,
+            max: 1.05,
+            title: {
+              display: true,
+              text: 'X Position'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: 'Upload a video and select keypoints to see pose data',
+            font: {
+              size: 14
+            },
+            color: '#666'
+          }
+        }
+      }
+    };
+
+    chartInstance = new Chart(ctx, config);
+  }
+
   async function createChart(): Promise<void> {
-    if (!canvasElement || !poseData) return;
+    if (!canvasElement) return;
 
     // Load zoom plugin if not already loaded
     await loadZoomPlugin();
@@ -110,6 +173,12 @@
     // Destroy existing chart
     if (chartInstance) {
       chartInstance.destroy();
+    }
+
+    // If no pose data, create placeholder chart
+    if (!poseData) {
+      await createPlaceholderChart();
+      return;
     }
 
     const valid_joints = Object.keys(jointMask).reduce((acc: string[], key: string) => {
@@ -147,6 +216,7 @@
         }
       };
     });
+
 
     if (datasets.length == 0) {
       datasets = [{
@@ -248,7 +318,11 @@
     await createChart();
   });
 
-  $: if (canvasElement && (jointMask || syncedTime)) {
+  // Force chart updates when key data changes
+  $: jointCount = poseData ? Object.keys(poseData.joints).length : 0;
+  $: selectedJointCount = Object.keys(jointMask).length;
+  
+  $: if (canvasElement && (jointCount > 0 || selectedJointCount > 0 || syncedTime !== undefined)) {
     createChart();
   }
 </script>

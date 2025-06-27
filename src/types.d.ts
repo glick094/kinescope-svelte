@@ -20,6 +20,7 @@ export interface FrameData {
   x: number;
   y: number;
   z?: number;
+  visibility?: number;
 }
 
 export interface JointData {

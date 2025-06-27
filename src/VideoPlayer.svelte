@@ -192,7 +192,7 @@
         const x = videoDimensions.offsetX + (frame.x * videoDimensions.displayWidth);
         const y = videoDimensions.offsetY + ((1 - frame.y) * videoDimensions.displayHeight);
         
-        drawLandmark(x, y, jointName, getJointColor(jointName), isSelected);
+        drawLandmark(x, y, jointName, getJointColor(jointName), isSelected, frame.visibility || 1.0);
       }
     });
     
@@ -280,13 +280,13 @@
     return minDiff <= strictTolerance ? closest : null;
   }
 
-  function drawLandmark(x: number, y: number, jointName: string, color: [number, number, number], isSelected: boolean = false) {
+  function drawLandmark(x: number, y: number, jointName: string, color: [number, number, number], isSelected: boolean = false, visibility: number) {
     if (!overlayCtx) return;
     
     if (isSelected) {
       // Draw full colored landmark with label for selected joints
-      overlayCtx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-      overlayCtx.strokeStyle = 'white';
+      overlayCtx.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${visibility})`;
+      overlayCtx.strokeStyle = `rgba(255, 255, 255, ${visibility})`;
       overlayCtx.lineWidth = 2;
       
       // Draw larger circle
@@ -295,14 +295,14 @@
       overlayCtx.fill();
       overlayCtx.stroke();
       
-      // Draw label
-      overlayCtx.fillStyle = 'white';
+      // Draw label with visibility-based opacity
+      overlayCtx.fillStyle = `rgba(255, 255, 255, ${visibility})`;
       overlayCtx.font = '14px Arial';
       overlayCtx.fillText(jointName.replace('_', ' '), x + 8, y - 8);
     } else {
       // Draw small white dot for unselected joints
-      overlayCtx.fillStyle = 'white';
-      overlayCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+      overlayCtx.fillStyle = `rgba(255, 255, 255, ${visibility})`;
+      overlayCtx.strokeStyle = `rgba(255, 255, 255, ${visibility})`;
       overlayCtx.lineWidth = 1;
       
       // Draw smaller circle

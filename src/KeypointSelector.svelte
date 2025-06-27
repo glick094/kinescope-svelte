@@ -46,20 +46,26 @@
   $: jointNames = poseData && poseData.joints ? Object.keys(poseData.joints) : [];
   $: hasData = poseData && jointNames.length > 0;
   $: step3Enabled = step2Completed && hasData;
+  $: step3Status = selectedJoints.size > 0 ? 'completed' : (step3Enabled ? 'current' : 'future');
+
 </script>
 
 <div class="keypoint-selector">
-  <button 
-    class="selector-button" 
-    on:click={toggleDropdown}
-    disabled={!step3Enabled}
-    class:disabled={!step3Enabled}
-  >
-    <span class="step-number">③</span>
-    <i class="fas fa-crosshairs"></i>
-    Select Keypoints
-    <i class="fas fa-chevron-down" class:rotated={isOpen}></i>
-  </button>
+  <div class="step-section">
+    <div class="step-row">
+      <span class="step-number {step3Status}">3</span>
+      <button 
+        class="selector-button {step3Status}" 
+        on:click={toggleDropdown}
+        disabled={!step3Enabled}
+        class:disabled={!step3Enabled}
+      >
+        <i class="fas fa-crosshairs"></i>
+        Select Keypoints
+        <i class="fas fa-chevron-down" class:rotated={isOpen}></i>
+      </button>
+    </div>
+  </div>
   
   {#if isOpen && step3Enabled}
     <div class="dropdown-menu">
@@ -92,8 +98,6 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: #17a2b8;
-    color: white;
     border: none;
     border-radius: 6px;
     font-size: 14px;
@@ -103,9 +107,29 @@
     white-space: nowrap;
   }
 
-  .selector-button:hover:not(.disabled) {
-    background: #138496;
+  .selector-button.current {
+    background: #28a745;
+    color: white;
+  }
+
+  .selector-button.current:hover:not(.disabled) {
+    background: #218838;
     transform: translateY(-1px);
+  }
+
+  .selector-button.completed {
+    background: #007bff;
+    color: white;
+  }
+
+  .selector-button.completed:hover:not(.disabled) {
+    background: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  .selector-button.future {
+    background: #6c757d;
+    color: white;
   }
 
   .selector-button.disabled {
@@ -150,16 +174,45 @@
     flex-shrink: 0;
   }
 
+  .step-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   .step-number {
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 600;
-    /* background: rgba(255, 255, 255, 0.2); */
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .step-number.completed {
+    background: transparent;
+    color: #6c757d;
+    border: 2px solid #6c757d;
+  }
+
+  .step-number.current {
+    background: #28a745;
+    color: white;
+  }
+
+  .step-number.future {
+    background: transparent;
+    color: #6c757d;
+    border: 2px solid #6c757d;
   }
 
   .dropdown-header {

@@ -106,7 +106,9 @@
     }
 
     LoadFromMediaPipeResult(result: PoseProcessingResult): void {
+      console.log('LoadFromMediaPipeResult called with:', Object.keys(result.joints).length, 'joints');
       this.joints = result.joints;
+      console.log('LoadFromMediaPipeResult finished, this.joints now has:', Object.keys(this.joints).length, 'joints');
     }
   }
 
@@ -145,15 +147,34 @@
         },
         onComplete: (result: PoseProcessingResult) => {
           console.log('MediaPipe processing completed, loading result:', result);
+          console.log('Result joint count:', Object.keys(result.joints).length);
+          console.log('Result joint names:', Object.keys(result.joints));
+          console.log('First joint frames count:', result.joints[Object.keys(result.joints)[0]]?.frames.length);
+          
+          console.log('PoseData BEFORE loading:', Object.keys(poseData.joints).length, 'joints');
           poseData.LoadFromMediaPipeResult(result);
+          console.log('PoseData AFTER loading:', Object.keys(poseData.joints).length, 'joints');
+          console.log('PoseData joint names after loading:', Object.keys(poseData.joints));
+          
           isProcessingPose = false;
           processingProgress = 1.0;
-          // Trigger reactivity
-          poseData = poseData;
-          // Force immediate pose overlay redraw by nudging syncedTime
-          const currentSyncedTime = syncedTime;
-          syncedTime = currentSyncedTime + 0.001;
-          setTimeout(() => { syncedTime = currentSyncedTime; }, 10);
+          
+          // Force reactivity by reassigning the object
+          const tempData = poseData;
+          poseData = tempData;
+          
+          // Jump to frame 1 (time 0)
+          if (videoElement) {
+            videoElement.currentTime = 0;
+          }
+          syncedTime = 0;
+          
+          // Force a tick to ensure all reactive statements have run
+          setTimeout(() => {
+            syncedTime = syncedTime; // Force another reactivity update
+            console.log('PoseData FINAL state:', Object.keys(poseData.joints).length, 'joints');
+          }, 100);
+          
           console.log('PoseData updated:', poseData);
         },
         onError: (error: string) => {
@@ -181,11 +202,38 @@
     // Trigger reactivity
     poseData = poseData;
     processingProgress = 1.0;
-    // Force immediate pose overlay redraw by nudging syncedTime
-    const currentSyncedTime = syncedTime;
-    syncedTime = currentSyncedTime + 0.001;
-    setTimeout(() => { syncedTime = currentSyncedTime; }, 10);
+    // Jump to frame 1 (time 0)
+    if (videoElement) {
+      videoElement.currentTime = 0;
+    }
+    syncedTime = 0;
     console.log('CSV data loaded into poseData:', poseData);
+  }
+
+  function resetWorkflow(): void {
+    // Stop any ongoing processing
+    if (poseProcessor) {
+      poseProcessor.stopProcessing();
+    }
+    
+    // Clear all state
+    videoSrc = null;
+    syncedTime = 0;
+    jointMask = {};
+    isProcessingPose = false;
+    processingProgress = 0;
+    
+    // Clear pose data
+    poseData.joints = {};
+    poseData = poseData; // Trigger reactivity
+    
+    // Clear video element if bound
+    if (videoElement) {
+      videoElement.src = '';
+      videoElement.currentTime = 0;
+    }
+    
+    console.log('Workflow reset');
   }
 </script>
 
@@ -197,7 +245,13 @@
   <div class="header-bar">
     <MenuBar poseData={poseData} videoSrc={videoSrc} videoElement={videoElement}/>
     <div class="header-controls">
-      <VideoUploader setVideoSrc={setVideoSrcHandler}/>
+      {#if videoSrc}
+        <button class="reset-button" on:click={resetWorkflow} title="Reset workflow">
+          <i class="fas fa-undo"></i>
+          Reset
+        </button>
+      {/if}
+      <VideoUploader setVideoSrc={setVideoSrcHandler} videoLoaded={!!videoSrc}/>
       <PoseProcessingPanel 
         isProcessing={isProcessingPose}
         progress={processingProgress}
@@ -207,7 +261,7 @@
         {videoElement}
         videoLoaded={!!videoSrc}
       />
-      <KeypointSelector poseData={poseData} setJointMask={setJointMaskHandler} step2Completed={processingProgress > 0 && !isProcessingPose}/>
+      <KeypointSelector poseData={poseData} setJointMask={setJointMaskHandler} step2Completed={processingProgress >= 1.0 && !isProcessingPose && poseData && Object.keys(poseData.joints).length > 0}/>
     </div>
   </div>
   
@@ -226,8 +280,20 @@
           <ConsoleComponent {syncedTime} {videoElement} />
         </div>
       {:else}
-        <div class="placeholder">
-          <div>Upload a video to begin</div>
+        <div class="video-placeholder">
+          <div class="video-placeholder-area">
+            <i class="fas fa-video placeholder-icon"></i>
+            <div class="placeholder-text">Video Player</div>
+            <div class="placeholder-subtext">Upload a video to begin</div>
+          </div>
+          <div class="console-placeholder">
+            <div class="console-controls">
+              <button class="control-btn disabled"><i class="fas fa-step-backward"></i></button>
+              <button class="control-btn disabled"><i class="fas fa-play"></i></button>
+              <button class="control-btn disabled"><i class="fas fa-step-forward"></i></button>
+              <button class="control-btn disabled"><i class="fas fa-sync-alt"></i></button>
+            </div>
+          </div>
         </div>
       {/if}
     </div>
@@ -250,7 +316,7 @@
 
   :global(.AppPanels) {
     display: flex;
-    height: 70vh;
+    height: 55vh;
     gap: 20px;
     padding: 20px;
   }
@@ -301,6 +367,27 @@
     gap: 15px;
   }
 
+  .reset-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .reset-button:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+  }
+
   .video-container {
     display: flex;
     flex-direction: column;
@@ -308,5 +395,73 @@
     gap: 10px;
     width: 100%;
     height: 100%;
+  }
+
+  .video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-placeholder-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%;
+    min-height: 200px;
+  }
+
+  .placeholder-icon {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+  }
+
+  .placeholder-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .placeholder-subtext {
+    font-size: 0.9rem;
+    color: #999;
+    font-style: italic;
+  }
+
+  .console-placeholder {
+    width: 100%;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+  }
+
+  .console-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .control-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    font-size: 14px;
+  }
+
+  .control-btn.disabled {
+    opacity: 0.6;
   }
 </style>

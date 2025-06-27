@@ -2,7 +2,7 @@ import type { FrameData, JointData } from '../types';
 
 // Define Results interface locally to avoid SSR issues
 interface Results {
-  poseLandmarks?: Array<{x: number, y: number, z: number}>;
+  poseLandmarks?: Array<{x: number, y: number, z: number, visibility: number}>;
 }
 
 export interface PoseProcessingResult {
@@ -125,8 +125,8 @@ export class PoseProcessor {
         smoothLandmarks: true,
         enableSegmentation: false,
         smoothSegmentation: false,
-        minDetectionConfidence: 0.5,
-        minTrackingConfidence: 0.5
+        minDetectionConfidence: 0.3,
+        minTrackingConfidence: 0.3
       });
       
       // Wait for pose to initialize
@@ -148,6 +148,29 @@ export class PoseProcessor {
     if (!this.pose) {
       await this.initializePose();
     }
+
+    // Wait for video to be fully loaded
+    if (videoElement.readyState < 3) {
+      console.log('Video not fully loaded, waiting...');
+      await new Promise<void>((resolve) => {
+        const loadHandler = () => {
+          videoElement.removeEventListener('canplay', loadHandler);
+          console.log('Video is now ready for processing');
+          resolve();
+        };
+        videoElement.addEventListener('canplay', loadHandler);
+        
+        // Timeout after 5 seconds
+        setTimeout(() => {
+          videoElement.removeEventListener('canplay', loadHandler);
+          console.log('Video load timeout, proceeding anyway');
+          resolve();
+        }, 5000);
+      });
+    }
+
+    console.log(`Video readyState: ${videoElement.readyState}, duration: ${videoElement.duration}`);
+    console.log(`Video dimensions: ${videoElement.videoWidth}x${videoElement.videoHeight}`);
 
     this.isProcessing = true;
     const duration = videoElement.duration;
@@ -221,20 +244,57 @@ export class PoseProcessor {
     const timeToSeek = frameIndex / frameRate;
     
     return new Promise<void>((resolve) => {
-      const seekHandler = () => {
-        videoElement.removeEventListener('seeked', seekHandler);
+      const processFrame = async () => {
+        // Ensure video is ready to draw
+        if (videoElement.readyState < 2) {
+          resolve();
+          return;
+        }
         
         // Draw current frame to canvas
         this.canvas.width = videoElement.videoWidth;
         this.canvas.height = videoElement.videoHeight;
-        this.ctx.drawImage(videoElement, 0, 0);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        try {
+          // Ensure video is not paused for drawing - temporarily play if needed
+          const wasPlaying = !videoElement.paused;
+          if (videoElement.paused) {
+            videoElement.play();
+            await new Promise(r => setTimeout(r, 16)); // ~1 frame at 60fps
+          }
+          
+          this.ctx.drawImage(videoElement, 0, 0);
+          
+          // Pause again if it was originally paused
+          if (!wasPlaying) {
+            videoElement.pause();
+          }
+          
+        } catch (error) {
+          console.error(`Frame ${frameIndex}: Error drawing video to canvas:`, error);
+        }
         
         // Send frame to MediaPipe
         this.pose.send({ image: this.canvas });
         resolve();
       };
       
+      const seekHandler = () => {
+        videoElement.removeEventListener('seeked', seekHandler);
+        setTimeout(() => processFrame(), 50);
+      };
+      
+      // Add timeout to prevent hanging
+      const timeoutHandler = () => {
+        videoElement.removeEventListener('seeked', seekHandler);
+        processFrame();
+      };
+      
       videoElement.addEventListener('seeked', seekHandler);
+      setTimeout(timeoutHandler, 200); // 200ms timeout
+      
+      // Perform the seek
       videoElement.currentTime = timeToSeek;
     });
   }
@@ -248,13 +308,15 @@ export class PoseProcessor {
             t: timestamp,
             x: landmark.x,
             y: 1 - landmark.y, // Flip Y coordinate to match CSV processing
-            z: landmark.z
+            z: landmark.z,
+            visibility: landmark.visibility || 1.0
           };
           joints[jointName].frames.push(frameData);
         }
       }
     }
   }
+
 
   stopProcessing() {
     this.isProcessing = false;

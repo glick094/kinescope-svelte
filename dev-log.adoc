@@ -4,7 +4,7 @@
 
 - [x] convert project to svelte
 - [x] get videos loading and playing
--- [ ] issues with mp4 not loading with some codec
+-- [x] issues with mp4 not loading with some codec. Some videos are corrupt
 - [x] implement mediapipe to process frame data from video
 - [x] implement csv upload of preprocessed mediapipe data
 - [x] get xy plot showing points
@@ -18,8 +18,8 @@
 == Layout checklist
 
 - [x] get screen to resize with window
-- [ ] reduce vertical height of video and XY plot, so timeline is taller
-- [ ] XY plot aspect ratio should match the aspect ratio of the video. 
+- [x] reduce vertical height of video and XY plot, so timeline is taller
+- [x] XY plot aspect ratio should match the aspect ratio of the video. 
 - [x] get XY plot to be X: -0.2->1.2 and Y: 1.2 -> -0.2 so it looks more or less what's on screen
 -- [ ] don't manually change the values on y coords
 - [ ] timeline x axis labels should be on the bottom of the graph
@@ -33,8 +33,8 @@
 
 - [ ] add themes that can be selected
 - [x] use Paul Tol's color blind palette
-- [ ] set plotting colors to always follow first is always the same color 
-- [ ] make color on the plot match color on mediapipe overlay
+- [x] set plotting colors to always follow first is always the same color 
+- [x] make color on the plot match color on mediapipe overlay
 
 // This is a lot closer, as shown here [Image #1]. (1) change our color palette to Paul Tol's color blind palette (2) I'd like to reduce the vertical height of the video and the XY plot. The timeline should be taller (3) I don't want to actually change the values of the Y axis, I just want to reverse the order. (4)  increase the opacity of the other XY point even more as they are too visible. Make the current frame XY point larger, and include maybe the 15 points on either side. These should really stand out. (5) Lastly, I notice on the video overlay when I push play, there seems to be a delay in the pose data ralated to the video, as shown. It always catches up, but maybe we should use the `frame_time_ms` column as the frame from the csv?
 
